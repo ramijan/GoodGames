@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  deck: MyString
+  description: MyString
+  developers: 
+  genres: 
+  image_url: MyString
+  release_date: 
+  platforms: 
+  publishers: 
+
+two:
+  name: MyString
+  deck: MyString
+  description: MyString
+  developers: 
+  genres: 
+  image_url: MyString
+  release_date: 
+  platforms: 
+  publishers: 
