@@ -8,11 +8,13 @@
 </head>
 <body>
 <div class="container">
-<% if current_user%>
-  Logged in as: <%= current_user.email %> | <%= link_to "Logout", logout_path %>
-<% else %>
-  <%= link_to "Login", login_path %> | <%= link_to "Sign up", signup_path %>
-<% end %>
+<div class="text-right">
+  <% if current_user%>
+    Logged in as: <%= current_user.email %> | <%= link_to "Logout", logout_path %>
+  <% else %>
+    <%= link_to "Login", login_path %> | <%= link_to "Sign up", signup_path %>
+  <% end %>
+</div>
 
 <%= yield %>
 
