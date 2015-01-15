@@ -1,0 +1,10 @@
+<h1>Game list</h1>
+
+<% @games.each do |game| %>
+
+<%= image_tag game[:image_urls][:thumb_url], class:"img-thumbnail"%>
+<h4><%= game.name %></h4><br>
+
+
+
+<% end %>

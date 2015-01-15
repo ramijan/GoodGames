@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:user][:password])
       session[:user_id] = user.id.to_s
-      redirect_to login_path
+      redirect_to games_path
     else
       render :new
     end

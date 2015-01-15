@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
-  def hello
-    render text: "Hello, world"
+  def authorize
+    redirect_to login_path unless current_user
   end
 end

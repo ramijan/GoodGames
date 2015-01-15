@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  root 'application#hello'
+  root 'games#index'
+
+  resources :games
 
   resources :users
   get '/signup' => 'users#new', as: :signup
