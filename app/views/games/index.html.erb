@@ -2,8 +2,9 @@
 
 <% @games.each do |game| %>
 
-<%= image_tag game[:image_urls][:thumb_url], class:"img-thumbnail"%>
-<h4><%= game.name %></h4><br>
+ 
+<%= image_tag game[:image_urls][:thumb_url], class:"img-thumbnail", size:"150x150" %>
+<h4><%= link_to game.name, game_path(game) %></h4><br>
 
 
 
