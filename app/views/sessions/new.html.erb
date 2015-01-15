@@ -1,5 +1,7 @@
 <h1>Log in</h1>
 
+Session id: <%= session[:user_id] %>
+
 <%= form_for :user, url:'/login' do |f| %>
   <div class="form-group">
     <p>Email:</p>
