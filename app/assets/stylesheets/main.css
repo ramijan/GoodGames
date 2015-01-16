@@ -1,0 +1,22 @@
+.text-right {
+  text-align: right;
+}
+
+.search-link {
+  color: #333;
+}
+
+.search-link:hover {
+  color: #333;
+
+}
+
+.glyphicon {
+  color: yellow;
+}
+
+.row, hr {
+  border-bottom: 1px solid lightgray;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
