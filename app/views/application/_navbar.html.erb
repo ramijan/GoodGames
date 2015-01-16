@@ -21,4 +21,10 @@
       </li>
     </ul>
   <% end %>
+    <%= form_tag "/games", method: :get, class:"navbar-form navbar-right" do %>
+    <div class="form-group">
+      <%= text_field_tag :query, nil, placeholder:"Search", class:"form-control" %>
+    </div>
+    <%= submit_tag "Submit", class:"btn btn-default" %>
+    <% end %>
 </nav>
