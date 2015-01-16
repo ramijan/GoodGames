@@ -1,0 +1,24 @@
+<nav class="navbar navbar-default navbar-inverse">
+  <div class="navbar-brand">
+    <h3 class="navbar-text">GoodGames</h3>
+  </div>
+  <% if current_user%>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <p class="navbar-text"><%= current_user.email %></p>
+      </li>
+      <li>
+        <%= link_to "Logout", logout_path, class:"navbar-link right" %>
+      </li>
+    </ul>
+  <% else %>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <%= link_to "Login", login_path, class:"navbar-link" %> 
+      </li>
+      <li>
+        <%= link_to "Sign up", signup_path, class:"navbar-link right" %>
+      </li>
+    </ul>
+  <% end %>
+</nav>

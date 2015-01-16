@@ -2,7 +2,7 @@
 
 <% @games.each do |game| %>
 <%= link_to game_path(game), class:"search-link" do %>
-<div class="row">
+<div class="row game-row">
   <div class="col-md-2">
   <%= image_tag game[:image_urls][:thumb_url], class:"img-thumbnail search-img", width:'175' %>
   </div>
