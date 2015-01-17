@@ -2,26 +2,7 @@
   <div class="col-md-1">
   </div>
   <div class="col-md-8">
-    <h1><%= @games.count %><%= "+" if @games.count == 100 %> Search results:</h1>
-    <% @games.each do |game| %>
-        <div class="row game-row">
-          <div class="col-md-3">
-          <% if game['image'] && game['image']['thumb_url'] %>
-            <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img", width:'175' %>
-            <% end %>
-          </div>
-          <div class="col-md-9">
-            <h3 class="title"><%= game['name'] %></h3>
-            <p><%= game['deck'] %></p>
-            <p>
-              Average rating: 
-              <% rand(1..5).times do %>
-                <span class="glyphicon glyphicon-star"></span>
-              <% end %>
-            </p>
-          </div>
-        </div>
-    <% end %>
+    stuff
   </div>
   <div class="col-md-3">
   </div>

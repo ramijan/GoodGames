@@ -1,7 +1,8 @@
 require 'net/http'
 require 'json'
 
-url = URI.parse("http://www.giantbomb.com/api/search/?api_key=b038c70b0015dfe2aa7b79b78386907fb0f2d850&format=json&query=%22dying%20light%22&resources=game")
+key = Rails.application.secrets.giant_bomb_key
+url = URI.parse("http://www.giantbomb.com/api/search/?api_key=#{key}&format=json&query=%22dying%20light%22&resources=game")
 req = Net::HTTP::Get.new(url.to_s)
 res = Net::HTTP.start(url.host, url.port) {|http| http.request(req)}
 
