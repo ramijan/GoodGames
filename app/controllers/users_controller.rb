@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def add_game  #update
+  def update  #update
    #todo
   end
 

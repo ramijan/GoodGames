@@ -15,4 +15,6 @@ class Game
   field :site_detail_url, type: String
   has_and_belongs_to_many :users
 
+  validates :giant_bomb_id, uniqueness: true
+
 end
