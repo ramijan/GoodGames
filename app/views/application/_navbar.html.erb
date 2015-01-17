@@ -1,6 +1,8 @@
 <nav class="navbar navbar-default navbar-inverse">
   <div class="navbar-brand">
-    <h3 class="navbar-text">GoodGames</h3>
+    <%= link_to root_path do %>
+      <h3 class="navbar-text">GoodGames</h3>
+      <% end %>
   </div>
   <% if current_user %>
     <ul class="nav navbar-nav navbar-right">
