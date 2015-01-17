@@ -1,4 +1,4 @@
 <h2><%= @game['name'] %></h2>
 <p><%= @game['deck'] %></p>
 <p>Release Date: <%= @game['release_date'].to_date.strftime('%B %d, %Y') if @game['release_date'] %></p>
-<%= image_tag @game['image_urls']['medium_url'], class:"img-thumbnail", size:"300x300" %>
+<%= image_tag @game['image']['medium_url'], class:"img-thumbnail", size:"300x300" %>
