@@ -21,7 +21,7 @@
       </li>
     </ul>
   <% end %>
-    <%= form_tag "/games", method: :get, class:"navbar-form navbar-right" do %>
+    <%= form_tag search_results_path, method: :get, class:"navbar-form navbar-right" do %>
     <div class="form-group">
       <%= text_field_tag :query, nil, placeholder:"Search", class:"form-control" %>
     </div>
