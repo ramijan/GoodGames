@@ -52,4 +52,15 @@ ul.dropdown-menu {
   text-align: center;
 }
 
-
+span.left {
+  float: left;
+}
+span.right {
+  float: right;
+}
+/*
+.btn-group-vertical button {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+*/

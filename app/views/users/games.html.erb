@@ -21,9 +21,15 @@
         </div>
         <div class="col-md-3 buttons">
           <div class="btn-group-vertical" role="group">
-            <%= button_to "Played", user_path(@user, game_id: game.id, to: :games_played), method: :patch, class: 'btn btn-default btn-block' %>
-            <%= button_to "Want to Play", user_path(@user, game_id: game.id, to: :games_want), method: :patch, class: 'btn btn-default btn-block' %>
-            <%= button_to "Playing Now", user_path(@user, game_id: game.id, to: :games_playing), method: :patch, class: 'btn btn-default btn-block' %>
+            <%= button_to user_path(@user, game_id: game.id, to: :games_played), method: :patch, class: 'btn btn-primary btn-block' do %>
+              <span class="glyphicon glyphicon-plus left"></span> <small class="right">  Played</small>
+            <% end %>
+            <%= button_to user_path(@user, game_id: game.id, to: :games_want), method: :patch, class: 'btn btn-success btn-block' do %>
+              <span class="glyphicon glyphicon-plus left"></span><small class="right">   Want</small>
+            <% end %>
+            <%= button_to user_path(@user, game_id: game.id, to: :games_playing), method: :patch, class: 'btn btn-default btn-block' do %>
+              <span class="glyphicon glyphicon-plus left"></span><small class="right">  Playing</small>
+            <% end %>
           </div>
         </div>
       </div>
