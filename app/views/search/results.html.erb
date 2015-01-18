@@ -5,12 +5,12 @@
     <h1><%= @results.count %><%= "+" if @results.count == 100 %> Search results:</h1>
     <% @results.each do |game| %>
         <div class="row game-row">
-          <div class="col-md-3">
+          <div class="col-md-2">
           <% if game['image'] && game['image']['thumb_url'] %>
-            <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img", width:'175' %>
+            <%= image_tag game['image']['icon_url'], class:"img-thumbnail search-img" %>
             <% end %>
           </div>
-          <div class="col-md-9">
+          <div class="col-md-10">
             <h3 class="title"><%= game['name'] %></h3>
             <p><%= game['deck'] %></p>
             <p>
@@ -19,7 +19,7 @@
                 <span class="glyphicon glyphicon-star"></span>
               <% end %>
             </p>
-            <%= link_to "Add", games_path(@results), method: :post %>
+            <%= link_to "Add", games_path(game_id:get_id(game)), :method => :post %>
           </div>
         </div>
 

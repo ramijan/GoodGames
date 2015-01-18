@@ -14,8 +14,8 @@
 
 .game-row {
   border-bottom: 1px solid lightgray;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 
@@ -28,4 +28,8 @@
 .navbar-brand h3 {
   margin-top: -5px;
   margin-bottom: 0;
+}
+
+.title {
+  margin-top: 0;
 }
