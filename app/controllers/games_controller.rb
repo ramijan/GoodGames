@@ -12,7 +12,6 @@ class GamesController < ApplicationController
   end
 
   def create
-
     # check if game is already in db
     @game = Game.find_by(giant_bomb_game_id: params[:game_id])
 
