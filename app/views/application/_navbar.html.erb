@@ -2,15 +2,18 @@
   <div class="navbar-brand">
     <%= link_to root_path do %>
       <h3 class="navbar-text">GoodGames</h3>
-      <% end %>
+    <% end %>
   </div>
   <% if current_user %>
     <ul class="nav navbar-nav navbar-right">
-      <li>
-        <%= link_to "#{current_user.email}", user_path(current_user), class:"navbar-link" %>
-      </li>
-      <li>
-        <%= link_to "Logout", logout_path, class:"navbar-link right" %>
+      <li class="dropdown">
+        <%= link_to "#{current_user.email}", user_path(current_user), class:"navbar-link float-left" %>
+        <a href="#" class="dropdown-toggle float-right" data-toggle="dropdown" role="button">
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li><%= link_to "Logout", logout_path %></li>
+        </ul>
       </li>
     </ul>
   <% else %>
@@ -27,6 +30,14 @@
     <div class="form-group">
       <%= text_field_tag :query, nil, placeholder:"Search", class:"form-control" %>
     </div>
-    <%= submit_tag "Submit", class:"btn btn-default" %>
+    <%= button_tag class:"btn btn-default" do %>
+      <span class="glyphicon glyphicon-search"></span>
     <% end %>
+    <% end %>
+  <div class="nav navbar-nav navbar-right">
+      <%= link_to '#' do %>
+        <h4 class="navbar-text">My Games</h4>
+      <% end %>    
+  </div>
+
 </nav>

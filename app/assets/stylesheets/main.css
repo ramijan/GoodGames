@@ -8,7 +8,7 @@
 
 }
 
-.glyphicon {
+.glyphicon-star {
   color: yellow;
 }
 
@@ -17,8 +17,6 @@
   padding-top: 10px;
   padding-bottom: 10px;
 }
-
-
 
 .navbar-link.right {
   margin-right: 10px;
@@ -32,4 +30,24 @@
 
 .title {
   margin-top: 0;
+}
+
+.glyphicon-search {
+  color: #222222;
+}
+
+.float-left {
+  float: left;
+  padding-right: 0 !important;
+}
+
+.float-right {
+  float: right;
+  padding-left: 5px !important;
+  margin-right: 15px;
+}
+
+ul.dropdown-menu {
+  margin-right: 15px;
+  text-align: center;
 }
