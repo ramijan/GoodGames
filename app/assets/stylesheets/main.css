@@ -12,6 +12,10 @@
   color: yellow;
 }
 
+.game-header {
+  border-bottom: 2px solid lightgray;
+}
+
 .game-row {
   border-bottom: 1px solid lightgray;
   padding-top: 10px;

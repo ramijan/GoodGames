@@ -25,7 +25,7 @@ class GamesController < ApplicationController
     current_user.games << @game
 
     # redirect to game details screen
-    redirect_to game_path(@game)
+    redirect_to user_games_path(current_user)
   end
 
 end

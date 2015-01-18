@@ -27,6 +27,7 @@ class UsersController < ApplicationController
   def update  #update
     @user = User.find(params[:id])
     @game = Game.find(params[:game_id])
+    @gameslist = ['games', 'games_played', 'games_playing', 'games_want']
 
     case params[:to]
       when 'games_played'
