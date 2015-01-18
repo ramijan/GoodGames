@@ -35,9 +35,11 @@
     <% end %>
     <% end %>
   <div class="nav navbar-nav navbar-right">
-      <%= link_to '#' do %>
+    <% if current_user %>
+      <%= link_to user_games_path(current_user) do %>
         <h4 class="navbar-text">My Games</h4>
-      <% end %>    
+      <% end %>
+    <% end %>    
   </div>
 
 </nav>

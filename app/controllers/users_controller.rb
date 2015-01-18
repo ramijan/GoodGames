@@ -11,6 +11,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.games_played = []
+    @user.games_playing = []
+    @user.games_want = []
+
 
     if @user.save
       session[:user_id] = @user.id.to_s
@@ -21,7 +25,29 @@ class UsersController < ApplicationController
   end
 
   def update  #update
-   #todo
+    @user = User.find(params[:id])
+    @game = Game.find(params[:game_id])
+
+    case params[:to]
+      when 'games_played'
+        @user.games_playing.delete(params[:game_id])
+        @user.games_want.delete(params[:game_id])
+        @user.games_played << params[:game_id] unless @user.games_played.include? params[:game_id]
+      when 'games_want'
+        @user.games_playing.delete(params[:game_id])
+        @user.games_played.delete(params[:game_id])
+        @user.games_want << params[:game_id] unless @user.games_played.include? params[:game_id]
+      when 'games_playing'
+        @user.games_played.delete(params[:game_id])
+        @user.games_want.delete(params[:game_id])
+        @user.games_playing << params[:game_id] unless @user.games_played.include? params[:game_id]
+    end
+      @user.save
+      redirect_to user_games_path(@user)
+  end
+
+  def games
+    @user = current_user
   end
 
   private
