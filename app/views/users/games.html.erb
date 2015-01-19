@@ -2,10 +2,10 @@
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#all" role="tab" data-toggle="tab">all</a></li>
-    <li role="presentation"><a href="#played" role="tab" data-toggle="tab">played</a></li>
-    <li role="presentation"><a href="#current" role="tab" data-toggle="tab">currently-playing</a></li>
-    <li role="presentation"><a href="#want" role="tab" data-toggle="tab">to-play</a></li>
+    <li role="presentation" class="active"><a href="#all" role="tab" data-toggle="tab">all  <span class="badge"><%= @user.games.count %></span></a></a></li>
+    <li role="presentation"><a href="#played" role="tab" data-toggle="tab">played  <span class="badge"><%= @user.games_played.count %></span></a></li>
+    <li role="presentation"><a href="#current" role="tab" data-toggle="tab">currently-playing  <span class="badge"><%= @user.games_playing.count %></span></a></li>
+    <li role="presentation"><a href="#want" role="tab" data-toggle="tab">to-play  <span class="badge"><%= @user.games_want.count %></span></a></li>
   </ul>
 
 
@@ -19,8 +19,9 @@
           <th class="col-md-2">Title</th>
           <th class="col-md-2">Developer</th>
           <th class="col-md-2">Publisher</th>
-          <th class="col-md-2">avg. rating</th>
-          <th class="col-md-3">add to list</th>
+          <th class="col-md-1">avg. rating</th>
+          <th class="col-md-2">my rating</th>
+          <th class="col-md-2">list</th>
         </tr>
       <% @user.games.reverse.each do |game| %>
       <tr class="row game-row">
@@ -42,10 +43,18 @@
         <td class="col-md-2">
           Nintendo (Placeholder)
         </td>
-        <td class="col-md-2">
-          3.5 (Placeholder)
+        <td class="col-md-1">
+          <%= game.average_rating %>
         </td>
-        <td class="col-md-3">
+        <td class="col-md-2">
+          <% my_rating(game).times do %>
+            <span class="glyphicon glyphicon-star"></span>
+          <% end %>
+          <% (5-my_rating(game)).times do %>
+            <span class="glyphicon glyphicon-star-empty"></span>
+          <% end %>
+        </td>
+        <td class="col-md-2">
           <div class="btn-group-vertical" role="group">
             <%= button_to user_path(@user, game_id: game.id, to: :games_played), method: :patch, class: 'btn btn-primary btn-block btn-sm' do %>
               <span class="glyphicon glyphicon-plus left"></span> <small class="right">  add to played list</small>

@@ -18,4 +18,18 @@ class Game
 
   validates :giant_bomb_game_id, uniqueness: true
 
+  def average_rating
+    sum = 0
+    self.reviews.each do |review|
+      sum += review.rating
+    end
+
+    if reviews.count > 0
+      return sum.to_f / reviews.count
+    else
+      return 'n/a'
+    end
+  end
+
+
 end
