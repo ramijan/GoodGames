@@ -62,9 +62,7 @@ span.left {
 span.right {
   float: right;
 }
-/*
-.btn-group-vertical button {
-  padding-left: 5px;
-  padding-right: 5px;
+
+.images {
+  max-width: 250px !important;
 }
-*/

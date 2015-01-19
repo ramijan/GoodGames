@@ -26,14 +26,18 @@
       <tr class="row game-row">
         <td class="col-md-1">
           <% if game['image'] && game['image']['thumb_url'] %>
+            <%= link_to game_path(game) do %>
             <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img" %>
+            <% end %>
           <% end %>
         </td>
         <td class="col-md-2">
-          <%= game['name'] %>
+          <%= link_to game_path(game) do %> 
+            <%= game['name'] %>
+          <% end %>
         </td>
         <td class="col-md-2">
-          Nintento (Placeholder)
+          Nintendo (Placeholder)
         </td>
         <td class="col-md-2">
           Nintendo (Placeholder)
@@ -71,9 +75,9 @@
     <% @user.games_played.each do |game_id| %>
       <% game = Game.find(game_id) %>
      <tr class="row game-row">
-        <td class="col-md-2">
+        <td class="col-md-1">
           <% if game['image'] && game['image']['thumb_url'] %>
-            <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img", width:'80' %>
+            <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img" %>
           <% end %>
         </td>
         <td class="col-md-2">
@@ -88,7 +92,7 @@
         <td class="col-md-2">
           3.5 (Placeholder)
         </td>
-        <td class="col-md-2">
+        <td class="col-md-3">
           <div class="btn-group-vertical" role="group">
             <%= button_to user_path(@user, game_id: game.id, to: :games_played), method: :patch, class: 'btn btn-primary btn-block btn-sm' do %>
               <span class="glyphicon glyphicon-plus left"></span> <small class="right">  add to played list</small>
@@ -119,9 +123,9 @@
     <% @user.games_playing.each do |game_id| %>
       <% game = Game.find(game_id) %>
      <tr class="row game-row">
-        <td class="col-md-2">
+        <td class="col-md-1">
           <% if game['image'] && game['image']['thumb_url'] %>
-            <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img", width:'80' %>
+            <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img" %>
           <% end %>
         </td>
         <td class="col-md-2">
@@ -136,7 +140,7 @@
         <td class="col-md-2">
           3.5 (Placeholder)
         </td>
-        <td class="col-md-2">
+        <td class="col-md-3">
           <div class="btn-group-vertical" role="group">
             <%= button_to user_path(@user, game_id: game.id, to: :games_played), method: :patch, class: 'btn btn-primary btn-block btn-sm' do %>
               <span class="glyphicon glyphicon-plus left"></span> <small class="right">  add to played list</small>
@@ -166,9 +170,9 @@
     <% @user.games_want.each do |game_id| %>
       <% game = Game.find(game_id) %>
            <tr class="row game-row">
-        <td class="col-md-2">
+        <td class="col-md-1">
           <% if game['image'] && game['image']['thumb_url'] %>
-            <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img", width:'80' %>
+            <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img" %>
           <% end %>
         </td>
         <td class="col-md-2">
@@ -183,7 +187,7 @@
         <td class="col-md-2">
           3.5 (Placeholder)
         </td>
-        <td class="col-md-2">
+        <td class="col-md-3">
           <div class="btn-group-vertical" role="group">
             <%= button_to user_path(@user, game_id: game.id, to: :games_played), method: :patch, class: 'btn btn-primary btn-block btn-sm' do %>
               <span class="glyphicon glyphicon-plus left"></span> <small class="right">  add to played list</small>

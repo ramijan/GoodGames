@@ -9,6 +9,7 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    @gb_data = get_giant_bomb_data('stuff', '', @game.giant_bomb_game_id)
   end
 
   def create

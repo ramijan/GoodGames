@@ -1,9 +1,64 @@
-<h2><%= @game['name'] %></h2>
-
-<!-- temporary display -->
+<!-- Top section -->
 <div class="row">
-<% @game['image'].each do |key, img| %>
-  <%= key %><br>
-  <%= image_tag img, class:"img-thumbnail" %><br>
+<div class="col-md-3">
+  <%= image_tag @gb_data['image']['medium_url'], width: '200' %>
+</div>
+<div class="col-md-9">
+
+<h2><%= @gb_data['name'] %></h2>
+
+<% if @gb_data['original_release_date'] %>
+  <p>Released: <%= @gb_data['original_release_date'].to_datetime.strftime('%B %e, %Y') %></p>
+<% else %>
+  <p>Release date: <%= "#{@gb_data['expected_release_month']} / #{@gb_data['expected_release_day']}" || @gb_data['expected_release_quarter'] %> / <%= @gb_data['expected_release_year'] %></p>
 <% end %>
+
+
+<table>
+  <tr>
+    <% @gb_data['platforms'].each do |platform| %>
+      <td><%= platform['name'] %></td>
+    <% end %>
+  </tr>
+</table>
+</div>
+
+<h4><%= @gb_data['deck']  %></h4>
+
+</div>
+
+<!-- Bottom section -->
+<div class="row">
+  <div class="col-md-8">
+    <div role="tabpanel">
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#details" role="tab" data-toggle="tab">Details</a></li>
+        <li role="presentation"><a href="#videos" role="tab" data-toggle="tab">Videos</a></li>
+        <li role="presentation"><a href="#images" role="tab" data-toggle="tab">Images</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="details">
+          <%= raw @gb_data['description'] %>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="videos">
+          <% @gb_data['videos'].each do |vid| %>
+            <%= link_to vid['site_detail_url'] do %>
+              <p><%= vid['name'] %></p>
+            <% end %>
+          <% end %>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="images">
+          <% @gb_data['images'].each do |img| %>
+            <%= image_tag img['thumb_url'], class:'img-thumbnail images' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+  </div>
 </div>
