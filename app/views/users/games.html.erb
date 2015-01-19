@@ -13,15 +13,16 @@
   <!-- Tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="all">
-      <table>
-        <tr class="row game-header">
-          <th class="col-md-1">Cover</th>
-          <th class="col-md-2">Title</th>
-          <th class="col-md-2">Developer</th>
-          <th class="col-md-2">Publisher</th>
-          <th class="col-md-1">avg. rating</th>
+      <br>
+      <table class='table table-striped'>
+        <tr class="row">
+          <th class="col-md-1">cover</th>
+          <th class="col-md-2">title</th>
+          <th class="col-md-2">developer</th>
+          <th class="col-md-2">publisher</th>
+          <th class="col-md-2">avg</th>
           <th class="col-md-2">my rating</th>
-          <th class="col-md-2">list</th>
+          <th class="col-md-1">list</th>
         </tr>
       <% @user.games.reverse.each do |game| %>
       <tr class="row game-row">
