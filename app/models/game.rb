@@ -14,6 +14,7 @@ class Game
   # field :platforms, type: Array
   # field :site_detail_url, type: String
   has_and_belongs_to_many :users
+  has_many :reviews
 
   validates :giant_bomb_game_id, uniqueness: true
 

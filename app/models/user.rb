@@ -11,6 +11,7 @@ class User
   field :games_playing, type: Array
   field :games_want, type: Array
   has_and_belongs_to_many :games
+  has_many :reviews
 
   has_secure_password
 
