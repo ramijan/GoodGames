@@ -9,8 +9,8 @@
   </ul>
 
 
-<div class="row">
   <!-- Tab panes -->
+<div class="row">
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="all">
       <br>
@@ -44,7 +44,7 @@
         <td class="col-md-2">
           Nintendo (Placeholder)
         </td>
-        <td class="col-md-1">
+        <td class="col-md-2">
           <%= game.average_rating %>
         </td>
         <td class="col-md-2">
@@ -57,7 +57,11 @@
           <% end %>
           </p>
         </td>
-        <td class="col-md-2">
+        <td class="col-md-1">
+          <% if @user.get_list_location(game) %>
+            <%= @user.get_list_location(game) %>
+
+          <% else %>
           <div class="btn-group-vertical" role="group">
             <%= button_to user_path(@user, game_id: game.id, to: :games_played), method: :patch, class: 'btn btn-primary btn-block btn-sm' do %>
               <span class="glyphicon glyphicon-plus left"></span> <small class="right">  add to played list</small>
@@ -69,6 +73,7 @@
               <span class="glyphicon glyphicon-plus left"></span><small class="right">   add to to-play list</small>
             <% end %>
           </div>
+          <% end %>
         </td>
       </tr>
       <% end %>
