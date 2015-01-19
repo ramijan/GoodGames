@@ -47,12 +47,14 @@
           <%= game.average_rating %>
         </td>
         <td class="col-md-2">
+        <p class="gray">
           <% my_rating(game).times do %>
             <span class="glyphicon glyphicon-star"></span>
           <% end %>
           <% (5-my_rating(game)).times do %>
             <span class="glyphicon glyphicon-star-empty"></span>
           <% end %>
+          </p>
         </td>
         <td class="col-md-2">
           <div class="btn-group-vertical" role="group">

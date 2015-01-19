@@ -1,31 +1,10 @@
 <nav class="navbar navbar-default navbar-inverse">
-  <div class="navbar-brand">
-    <%= link_to root_path do %>
-      <h3 class="navbar-text">GoodGames</h3>
+    <%= link_to root_path, class:'navbar-brand' do %>
+      <h4 class="navbar-text"><span class="big">G</span>ood<span class="big">G</span>ames</h4>
     <% end %>
-  </div>
-  <% if current_user %>
-    <ul class="nav navbar-nav navbar-right">
-      <li class="dropdown">
-        <%= link_to "#{current_user.email}", user_path(current_user), class:"navbar-link float-left" %>
-        <a href="#" class="dropdown-toggle float-right" data-toggle="dropdown" role="button">
-          <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu" role="menu">
-          <li><%= link_to "Logout", logout_path %></li>
-        </ul>
-      </li>
-    </ul>
-  <% else %>
-    <ul class="nav navbar-nav navbar-right">
-      <li>
-        <%= link_to "Login", login_path, class:"navbar-link" %> 
-      </li>
-      <li>
-        <%= link_to "Sign up", signup_path, class:"navbar-link right" %>
-      </li>
-    </ul>
-  <% end %>
+
+<ul class="nav navbar-nav navbar-right">
+  <li>
     <%= form_tag search_path, method: :get, class:"navbar-form navbar-right" do %>
     <div class="form-group">
       <%= text_field_tag :query, nil, placeholder:"Search", class:"form-control" %>
@@ -34,12 +13,29 @@
       <span class="glyphicon glyphicon-search"></span>
     <% end %>
     <% end %>
-  <div class="nav navbar-nav navbar-right">
+  </li>
+  <li>
     <% if current_user %>
-      <%= link_to user_games_path(current_user) do %>
-        <h4 class="navbar-text">My Games</h4>
-      <% end %>
+      <%= link_to "My Games", user_games_path(current_user), class:'navbar-link' %>
     <% end %>    
-  </div>
-
+  </li>
+  <% if current_user %>
+    <li class="dropdown">
+      <%= link_to "#{current_user.email}", user_path(current_user), class:"navbar-link float-left" %>
+      <a href="#" class="dropdown-toggle float-right" data-toggle="dropdown" role="button">
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu" role="menu">
+        <li><%= link_to "Logout", logout_path %></li>
+      </ul>
+    </li>
+  <% else %>
+    <li>
+      <%= link_to "Login", login_path, class:"navbar-link" %> 
+    </li>
+    <li>
+      <%= link_to "Sign up", signup_path, class:"navbar-link right" %>
+    </li>
+  <% end %>
+  </ul>
 </nav>

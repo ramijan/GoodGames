@@ -1,4 +1,16 @@
+@font-face {
+  font-family: 'emulogic';
+  src:url('emulogic.ttf');
+}
 
+.gray {
+  background-color: gray;
+  border: 1px solid black;
+  border-radius: 2px;
+  padding: 5px 10px;
+  margin: auto;
+  display: inline-block;
+}
 .search-link {
   color: #333;
 }
@@ -9,7 +21,12 @@
 }
 
 .glyphicon-star {
-  color: yellow;
+  color: gold;
+}
+
+.glyphicon-star-empty:hover {
+  color: gold;
+
 }
 
 .game-header {
@@ -27,9 +44,10 @@
   border-left: 1px solid #9D9D9D;
 }
 
-.navbar-brand h3 {
+.navbar-brand h4 {
   margin-top: -5px;
   margin-bottom: 0;
+  font-family: 'emulogic';
 }
 
 .title {
@@ -65,4 +83,21 @@ span.right {
 
 .images {
   max-width: 250px !important;
+}
+
+/*body {
+  padding-bottom: 70px;
+}*/
+
+.big {
+  font-size: 125%;
+}
+
+.gb-logo {
+  padding-right: 20px;
+  padding-top: 5px;
+}
+
+.footer {
+  margin-top: 20px;
 }
