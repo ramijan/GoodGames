@@ -1,32 +1,27 @@
 <!-- Top section -->
 <div class="row jumbotron">
-<div class="col-md-3">
-  <%= image_tag @gb_data['image']['medium_url'], width: '200' %>
-</div>
-<div class="col-md-9">
-
-<h2><%= @gb_data['name'] %></h2>
-
-<% if @gb_data['original_release_date'] %>
-  <p>Released: <%= @gb_data['original_release_date'].to_datetime.strftime('%B %e, %Y') %></p>
-<% else %>
-  <p>Release date: <%= "#{@gb_data['expected_release_month']} / #{@gb_data['expected_release_day']}" || @gb_data['expected_release_quarter'] %> / <%= @gb_data['expected_release_year'] %></p>
-<% end %>
-
-
-<table>
-  <tr>
-    <% @gb_data['platforms'].each do |platform| %>
-      <td><%= platform['name'] %></td>
+  <div class="col-md-3">
+    <%= image_tag @gb_data['image']['medium_url'], width:'100%' %>
+  </div>
+  <div class="col-md-9">
+    <h2><%= @gb_data['name'] %></h2>
+    <% if @gb_data['original_release_date'] %>
+      <h5>Released: <%= @gb_data['original_release_date'].to_datetime.strftime('%B %e, %Y') %></h5>
+    <% else %>
+      <h5>Release date: <%= "#{@gb_data['expected_release_month']} / #{@gb_data['expected_release_day']}" || @gb_data['expected_release_quarter'] %> / <%= @gb_data['expected_release_year'] %></h5>
     <% end %>
-  </tr>
-</table>
-</div>
-
-<h4><%= @gb_data['deck']  %></h4>
-
-<%= link_to "Add a Review", new_game_review_path(@game) %>
-
+    <p>
+      <% @gb_data['platforms'].each do |platform| %>
+        <small class="platform"> <%= platform['name'] %> /</small>
+      <% end %>
+    </p>
+    <h4><%= @gb_data['deck']  %></h4>
+    <% if current_user.games.find(@game) %>
+      <%= link_to "Write a Review", new_game_review_path(@game) %>
+    <% else %>
+    <%= link_to "Add to collection", games_path(game_id:get_id(@gb_data)), :method => :post %>
+    <% end %>
+  </div>
 </div>
 
 <!-- Bottom section -->

@@ -97,3 +97,12 @@ span.right {
 .footer {
   margin-top: 20px;
 }
+
+td {
+  vertical-align: middle !important;
+}
+
+td.platform {
+  border: 1px solid gray;
+  border-radius: 5px;
+}

@@ -1,8 +1,8 @@
-<div class="row">
+<div class="row well">
   <div class="col-md-1">
   </div>
   <div class="col-md-8">
-    <h1><%= @results.count %><%= "+" if @results.count == 100 %> Search results:</h1>
+    <h1><%= @results.count %><%= "+" if @results.count == 100 %> search results:</h1>
     <% @results.each do |game| %>
         <div class="row game-row">
           <div class="col-md-2">
@@ -13,13 +13,16 @@
           <div class="col-md-10">
             <h3 class="title"><%= game['name'] %></h3>
             <p><%= game['deck'] %></p>
-            <p>
-              Average rating: 
-              <% rand(1..5).times do %>
-                <span class="glyphicon glyphicon-star"></span>
-              <% end %>
-            </p>
-            <%= link_to "Add", games_path(game_id:get_id(game)), :method => :post %>
+            <% if this_game = @all_games.find_by(giant_bomb_game_id: get_id(game)) %>
+              <p>
+                <small><%= this_game.average_rating %> avg. rating - <%= this_game.reviews.count %> ratings</small>
+              </p>
+            <% end %>
+            <% if @my_games.find_by(giant_bomb_game_id: get_id(game)) %>
+              <p><span class="glyphicon glyphicon-thumbs-up"></span> In your collection</p>
+            <% else %>
+              <%= link_to "Add to collection", games_path(game_id:get_id(game)), :method => :post %>
+            <% end %>
           </div>
         </div>
 
