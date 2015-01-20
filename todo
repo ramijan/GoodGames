@@ -1,14 +1,17 @@
-# make nav bar behave on skinny screens
-# my games buttons need to be fixed
-# my games list, should take you to correct tab when you click on one of the buttons (currently always goes to 'all' tab)
-# implement home page (for logged in users)
-# fix videos section for game show page
-# add more links to the game show page (right now only get there from My Games list)
-# Add reviews
-# Add ratings
-# make everything pretty
-# continue working on game show page (needs a lot of formatting)
+(P1)# my games buttons need to be fixed
+(P1)# implement home page (for logged in users)
+(P1)# add more links to the game show page (right now only get there from My Games list)
+(P1)# add reviews display to game show page
+(P1)# add user profile page
+(P2)# make nav bar behave on skinny screens
+(P2)# my games list, should take you to correct tab when you click on one of the buttons (currently always goes to 'all' tab)
+(P2)# fix videos section for game show page
+(P2)# make everything pretty
+(P2)# continue working on game show page (needs a lot of formatting)
+(P2)# add better search to search results page (with system selector)
+(P2)# add search to My#Games page
+(P2)# add error messages to forms
 
-# add better search to search results page (with system selector)
-# add search to My#Games page
-# add error messages to forms
+COMPLETED:
+(P1)# Add reviews
+(P1)# Add ratings

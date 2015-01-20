@@ -16,7 +16,9 @@
   </li>
   <li>
     <% if current_user %>
-      <%= link_to "My Games", user_games_path(current_user), class:'navbar-link' %>
+      <%= link_to user_games_path(current_user), class:'navbar-link' do %>
+        My Games (<%= current_user.games.count %>)
+      <% end %>
     <% end %>    
   </li>
   <% if current_user %>

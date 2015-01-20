@@ -20,7 +20,7 @@
           <th class="col-md-2">title</th>
           <th class="col-md-2">developer</th>
           <th class="col-md-2">publisher</th>
-          <th class="col-md-2">avg</th>
+          <th class="col-md-2">avg rating</th>
           <th class="col-md-2">my rating</th>
           <th class="col-md-1">list</th>
         </tr>
@@ -39,10 +39,10 @@
           <% end %>
         </td>
         <td class="col-md-2">
-          Nintendo (Placeholder)
+          <%= game.developer %>
         </td>
         <td class="col-md-2">
-          Nintendo (Placeholder)
+          <%= game.publisher %>
         </td>
         <td class="col-md-2">
           <%= game.average_rating %>

@@ -19,7 +19,12 @@ class GamesController < ApplicationController
     # if not, get data from giant bomb
     if @game.nil?
       gb_data = get_giant_bomb_data('stuff', '', params[:game_id])
-      @game = Game.create(name: gb_data['name'], image: gb_data['image'], giant_bomb_game_id: params[:game_id])
+      @game = Game.create(name: gb_data['name'], 
+                          image: gb_data['image'], 
+                          developer: gb_data['developers'][0]['name'], 
+                          publisher: gb_data['publishers'][0]['name'], 
+                          giant_bomb_game_id: params[:game_id]
+              )
     end
 
     # push game into user game list
