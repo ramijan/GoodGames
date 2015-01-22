@@ -5,7 +5,7 @@ class SearchController < ApplicationController
     @my_games = current_user.games
 
     if params[:query] && params[:query] != ''
-      @results = get_giant_bomb_data(params[:query], 'name,image,api_detail_url,original_release_date')
+      @results = Giantbomb.search(params[:query], 'name,image,api_detail_url,original_release_date')
     else
       @results = []
     end
