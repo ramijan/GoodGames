@@ -18,7 +18,7 @@
                 <small><%= this_game.average_rating %> avg. rating - <%= this_game.reviews.count %> ratings</small>
               </p>
             <% end %>
-            <% if @my_games.find_by(giant_bomb_game_id: get_id(game)) %>
+            <% if current_user && @my_games.find_by(giant_bomb_game_id: get_id(game)) %>
               <p><span class="glyphicon glyphicon-thumbs-up"></span> In your collection</p>
             <% else %>
               <%= link_to "Add to collection", games_path(game_id:get_id(game)), :method => :post %>
