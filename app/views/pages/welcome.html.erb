@@ -1,0 +1,19 @@
+<div class="jumbotron">
+  <div class="row center-text">
+    <h1>Welcome to GoodGames</h1>
+    <p>A community where gamers can keep track of their games and share their ratings and reviews with friends</p>
+  </div>
+  <br>
+  <div class="row center-text">
+      <%= link_to "Login", login_path, class:"btn btn-lg btn-success" %>
+      <%= link_to "Signup", signup_path, class:"btn btn-lg btn-primary" %>
+  </div>
+</div>
+<div class="row">
+  <h4>Games recently added by our users:</h4>
+  <% Game.all.order(created_at: :desc).limit(5).each do |game| %>
+    <%= link_to game_path(game.id) do %>
+      <%= image_tag game['image']['thumb_url'], class:"img-thumbnail" %>
+    <% end %>
+  <% end %>
+</div>

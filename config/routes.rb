@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  root 'games#index'
+  #pages
+  root "pages#welcome"
+  get '/about' => 'pages#about'
+  get '/contact' => 'pages#contact'
 
   #games
   resources :games do
