@@ -11,9 +11,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.games_played = []
-    @user.games_playing = []
-    @user.games_want = []
+    # @user.games_played = []
+    # @user.games_playing = []
+    # @user.games_want = []
 
 
     if @user.save
