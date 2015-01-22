@@ -1,8 +1,9 @@
 (P1)# my games buttons need to be fixed
 (P1)# implement home page (for logged in users)
-(P1)# add more links to the game show page (right now only get there from My Games list)
-(P1)# add reviews display to game show page
+(P1)# Add edit review page
 (P1)# add user profile page
+(P1)# add profile pic to user
+(p1)# should be able to rate games by clicking the stars on the list page
 (P2)# make nav bar behave on skinny screens
 (P2)# my games list, should take you to correct tab when you click on one of the buttons (currently always goes to 'all' tab)
 (P2)# fix videos section for game show page
@@ -11,7 +12,10 @@
 (P2)# add better search to search results page (with system selector)
 (P2)# add search to My#Games page
 (P2)# add error messages to forms
+(P2)# fill out about and contact pages
 
 COMPLETED:
 (P1)# Add reviews
 (P1)# Add ratings
+(P1)# add more links to the game show page (right now only get there from My Games list)
+(P1)# add reviews display to game show page

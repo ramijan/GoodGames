@@ -18,7 +18,11 @@
     <h4><%= @gb_data['deck']  %></h4>
     <% if current_user %>
       <% if @game && current_user.games.find(@game.id) %>
-        <%= link_to "Write a Review", new_game_review_path(@game) %>
+        <% if @review %>
+          <%= link_to "Edit your Review", edit_game_review_path(@game, @review) %>
+        <% else %>
+          <%= link_to "Write a Review", new_game_review_path(@game) %>
+        <% end %>
       <% else %>
         <%= link_to "Add to collection", games_path(game_id:get_id(@gb_data)), :method => :post %>
       <% end %>
@@ -28,6 +32,7 @@
 
 <!-- Bottom section -->
 <div class="row">
+  <!-- Giant bomb data -->
   <div class="col-md-8">
     <div role="tabpanel">
 
@@ -58,6 +63,25 @@
       </div>
     </div>
   </div>
+  <!-- Reviews -->
   <div class="col-md-4">
+    <% if @game %>
+      <% @game.reviews.each do |review| %>
+        <div class="well">
+          <p> <%= review.rating %>
+            <% review.rating.times do %>
+              <span class="glyphicon glyphicon-star"></span>
+            <% end %>
+            <% (5-review.rating).times do %>
+              <span class="glyphicon glyphicon-star-empty"></span>          
+            <% end %>
+            - <%= review.user.first_name %>
+          </p>
+          <h5><%= review.title %></h5>
+          <p><%= review.body %></p>
+        </div>
+        <br>
+      <% end %>
+    <% end %>
   </div>
 </div>
