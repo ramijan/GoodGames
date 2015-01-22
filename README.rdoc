@@ -1,28 +1,10 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##WDI Project 2 - GoodGames
 
-Things you may want to cover:
+This is my second project for the General Assembly WDI course.  It is a website where gamers can add games to collections (like goodreads.com) and can rate and review those games.  
 
-* Ruby version
+This is a Ruby on Rails application using MongoDB for the database.  The GiantBomb API powers the search and provides all the game data.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+The app will be deployed on heroku here:
+http://good-games.herokuapp.com/
