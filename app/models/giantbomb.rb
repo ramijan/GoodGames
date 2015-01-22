@@ -8,7 +8,7 @@ class Giantbomb
 
   def self.search(query, field_list)
 
-    return {} if query == nil
+    return {} if query == nil || query == ''
 
     url = URI.parse("http://#{API_HOST}/search/?api_key=#{API_KEY}&format=json&resources=game&query=#{query}&field_list=#{field_list}")
     req = Net::HTTP::Get.new(url.to_s)

@@ -16,10 +16,12 @@
       <% end %>
     </p>
     <h4><%= @gb_data['deck']  %></h4>
-    <% if current_user.games.find(@game) %>
-      <%= link_to "Write a Review", new_game_review_path(@game) %>
-    <% else %>
-    <%= link_to "Add to collection", games_path(game_id:get_id(@gb_data)), :method => :post %>
+    <% if current_user %>
+      <% if @game && current_user.games.find(@game.id) %>
+        <%= link_to "Write a Review", new_game_review_path(@game) %>
+      <% else %>
+        <%= link_to "Add to collection", games_path(game_id:get_id(@gb_data)), :method => :post %>
+      <% end %>
     <% end %>
   </div>
 </div>

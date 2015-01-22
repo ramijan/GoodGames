@@ -5,6 +5,7 @@
     <h1><%= @results.count %><%= "+" if @results.count == 100 %> search results:</h1>
     <% @results.each do |game| %>
         <div class="row game-row">
+          <%= link_to game_path(get_id(game)) do %>
           <div class="col-md-2">
           <% if game['image'] && game['image']['thumb_url'] %>
             <%= image_tag game['image']['icon_url'], class:"img-thumbnail search-img" %>
@@ -26,6 +27,7 @@
               <% end %>
             <% end %>
           </div>
+          <% end %>
         </div>
 
     <% end %>

@@ -11,20 +11,5 @@ class ApplicationController < ActionController::Base
   def authorize
     redirect_to login_path unless current_user
   end
-
-  def get_giant_bomb_data(query, field_list, game_id='')
-    return {} if query=='' || query==nil
-
-    raw_uri = ''
-    if game_id == ''
-      raw_uri = "http://www.giantbomb.com/api/search/?api_key=#{ENV['GB_KEY']}&format=json&query=#{query}&resources=game&field_list=#{field_list}"
-    else
-      raw_uri = "http://www.giantbomb.com/api/game/#{game_id}/?api_key=#{ENV['GB_KEY']}&format=json"
-    end
-    url = URI.parse(raw_uri)
-    req = Net::HTTP::Get.new(url.to_s)
-    res = Net::HTTP.start(url.host, url.port) {|http| http.request(req)}
-    return JSON.parse(res.body)['results']
-  end
   
 end

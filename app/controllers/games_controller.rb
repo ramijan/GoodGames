@@ -1,6 +1,3 @@
-require 'net/http'
-require 'json'
-
 class GamesController < ApplicationController
 
   def index
@@ -9,7 +6,7 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
-    @gb_data = Giantbomb.game(@game.giant_bomb_game_id)
+    @gb_data = Giantbomb.game(params[:id])
   end
 
   def create
