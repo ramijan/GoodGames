@@ -17,54 +17,7 @@
         <table class='table table-striped'>
           <%= render 'users/tableheader' %>
           <% @user.games.reverse.each do |game| %>
-            <tr class="row game-row">
-              <td class="col-md-1">
-                <% if game['image'] && game['image']['thumb_url'] %>
-                  <%= link_to game_path(game) do %>
-                    <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img" %>
-                  <% end %>
-                <% end %>
-              </td>
-              <td class="col-md-2">
-                <%= link_to game['name'], game_path(game) %> 
-              </td>
-              <td class="col-md-2">
-                <%= game.developer %>
-              </td>
-              <td class="col-md-2">
-                <%= game.publisher %>
-              </td>
-              <td class="col-md-2">
-                <b><%= game.average_rating || 'n/a' %></b>
-              </td>
-              <td class="col-md-2">
-                <p class="gray">
-                  <% my_rating(game).times do %>
-                    <span class="glyphicon glyphicon-star"></span>
-                  <% end %>
-                  <% (5-my_rating(game)).times do %>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                  <% end %>
-                </p>
-              </td>
-              <td class="col-md-1">
-                <% if @user.get_list_location(game) %>
-                  <%= @user.get_list_location(game) %>
-                <% else %>
-                  <div class="btn-group-vertical" role="group">
-                    <%= button_to user_path(@user, game_id: game.id, to: :games_played), method: :patch, class: 'btn btn-primary btn-block btn' do %>
-                      <span class="glyphicon glyphicon-plus left"></span> _<small class="right">played</small>
-                    <% end %>
-                    <%= button_to user_path(@user, game_id: game.id, to: :games_playing), method: :patch, class: 'btn btn-default btn-block btn' do %>
-                      <span class="glyphicon glyphicon-plus left"></span> _<small class="right">playing</small>
-                    <% end %>
-                    <%= button_to user_path(@user, game_id: game.id, to: :games_want), method: :patch, class: 'btn btn-success btn-block btn' do %>
-                      <span class="glyphicon glyphicon-plus left"></span> _<small class="right">to-play</small>
-                    <% end %>
-                  </div>
-                <% end %>
-              </td>
-            </tr>
+            <%= render 'users/gamerow', :game => game %>
           <% end %>
         </table>
       </div>
@@ -75,35 +28,7 @@
           <% @user.games_played.each do |game_id| %>
             <% game = Game.find(game_id) %>
             <tr class="row game-row">
-              <td class="col-md-1">
-                <% if game['image'] && game['image']['thumb_url'] %>
-                  <%= link_to game_path(game) do %>
-                    <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img" %>
-                  <% end %>
-                <% end %>
-              </td>
-              <td class="col-md-2">
-                <%= link_to game['name'], game_path(game) %> 
-              </td>
-              <td class="col-md-2">
-                <%= game.developer %>
-              </td>
-              <td class="col-md-2">
-                <%= game.publisher %>
-              </td>
-              <td class="col-md-2">
-                <b><%= game.average_rating || 'n/a' %></b>
-              </td>
-              <td class="col-md-2">
-                <p class="gray">
-                  <% my_rating(game).times do %>
-                    <span class="glyphicon glyphicon-star"></span>
-                  <% end %>
-                  <% (5-my_rating(game)).times do %>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                  <% end %>
-                </p>
-              </td>
+              <%= render 'users/listrow', :game => game %>
               <td class="col-md-1">
                 <div class="btn-group-vertical" role="group">
                   <%= button_to user_path(@user, game_id: game.id, to: :games_playing), method: :patch, class: 'btn btn-default btn-block btn' do %>
@@ -125,35 +50,7 @@
           <% @user.games_playing.each do |game_id| %>
             <% game = Game.find(game_id) %>
             <tr class="row game-row">
-              <td class="col-md-1">
-                <% if game['image'] && game['image']['thumb_url'] %>
-                  <%= link_to game_path(game) do %>
-                    <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img" %>
-                  <% end %>
-                <% end %>
-              </td>
-              <td class="col-md-2">
-                <%= link_to game['name'], game_path(game) %> 
-              </td>
-              <td class="col-md-2">
-                <%= game.developer %>
-              </td>
-              <td class="col-md-2">
-                <%= game.publisher %>
-              </td>
-              <td class="col-md-2">
-                <b><%= game.average_rating || 'n/a' %></b>
-              </td>
-              <td class="col-md-2">
-                <p class="gray">
-                  <% my_rating(game).times do %>
-                    <span class="glyphicon glyphicon-star"></span>
-                  <% end %>
-                  <% (5-my_rating(game)).times do %>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                  <% end %>
-                </p>
-              </td>
+              <%= render 'users/listrow', :game => game %>
               <td class="col-md-1">
                 <div class="btn-group-vertical" role="group">
                   <%= button_to user_path(@user, game_id: game.id, to: :games_played), method: :patch, class: 'btn btn-primary btn-block btn' do %>
@@ -175,35 +72,7 @@
           <% @user.games_want.each do |game_id| %>
             <% game = Game.find(game_id) %>
             <tr class="row game-row">
-              <td class="col-md-1">
-                <% if game['image'] && game['image']['thumb_url'] %>
-                  <%= link_to game_path(game) do %>
-                    <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img" %>
-                  <% end %>
-                <% end %>
-              </td>
-              <td class="col-md-2">
-                <%= link_to game['name'], game_path(game) %> 
-              </td>
-              <td class="col-md-2">
-                <%= game.developer %>
-              </td>
-              <td class="col-md-2">
-                <%= game.publisher %>
-              </td>
-              <td class="col-md-2">
-                <b><%= game.average_rating || 'n/a' %></b>
-              </td>
-              <td class="col-md-2">
-                <p class="gray">
-                  <% my_rating(game).times do %>
-                    <span class="glyphicon glyphicon-star"></span>
-                  <% end %>
-                  <% (5-my_rating(game)).times do %>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                  <% end %>
-                </p>
-              </td>
+              <%= render 'users/listrow', :game => game %>              
               <td class="col-md-1">
                 <div class="btn-group-vertical" role="group">
                   <%= button_to user_path(@user, game_id: game.id, to: :games_played), method: :patch, class: 'btn btn-primary btn-block btn' do %>

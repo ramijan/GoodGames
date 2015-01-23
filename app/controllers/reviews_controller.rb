@@ -6,12 +6,16 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(params.require(:review).permit(:rating, :title, :body))
+    @review = Review.new(review_params)
     @review.user = current_user
     @review.game = Game.find(params[:game_id])
 
     if @review.save
-      redirect_to game_path(params[:game_id])
+      if params[:from_list]
+        redirect_to user_games_path(current_user)
+      else
+        redirect_to game_path(params[:game_id])
+      end
     else
       render :new
     end
@@ -26,11 +30,22 @@ class ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:id])
 
-    if @review.update_attributes(params.require(:review).permit(:rating, :title, :body))
-      redirect_to game_path(params[:game_id])
+    if @review.update_attributes(review_params)
+      if params[:from_list]
+        redirect_to user_games_path(current_user)
+      else
+        redirect_to game_path(params[:game_id])
+      end
     else
       render :edit
     end
+  end
+
+
+  private
+
+  def review_params
+    params.require(:review).permit(:rating, :title, :body)
   end
 
 

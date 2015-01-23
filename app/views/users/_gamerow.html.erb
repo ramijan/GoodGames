@@ -1,0 +1,60 @@
+<tr class="row game-row">
+  <td class="col-md-1">
+    <% if game['image'] && game['image']['thumb_url'] %>
+      <%= link_to game_path(game) do %>
+        <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img" %>
+      <% end %>
+    <% end %>
+  </td>
+  <td class="col-md-2">
+    <%= link_to game['name'], game_path(game) %> 
+  </td>
+  <td class="col-md-2">
+    <%= game.developer %>
+  </td>
+  <td class="col-md-2">
+    <%= game.publisher %>
+  </td>
+  <td class="col-md-2">
+    <b><%= game.average_rating || 'n/a' %></b>
+  </td>
+  <td class="col-md-2">
+    <p>
+      <% if my_review(game) %>
+        <% (1..my_rating(game)).each do |i| %>
+          <%= link_to game_review_path(game, my_review(game), :review => {rating: i}, :from_list => true), :method => :patch, class:'star-group' do %>
+            <span class="glyphicon glyphicon-star on"></span>
+          <% end %>
+        <% end %>
+        <% ((my_rating(game)+1)...6).each do |i| %>
+          <%= link_to game_review_path(game, my_review(game), :review => {rating: i}, :from_list => true), :method => :patch, class:'star-group' do %>
+            <span class="glyphicon glyphicon-star off"></span>
+          <% end %>
+        <% end %>
+      <% else %>
+        <% (1..5).each do |i| %>
+          <%= link_to game_reviews_path(game, :review => {rating: i}, :from_list => true), :method => :create, class:'star-group' do %>
+            <span class="glyphicon glyphicon-star off"></span>
+          <% end %>
+        <% end %>
+      <% end %>
+    </p>
+  </td>
+  <td class="col-md-1">
+    <% if @user.get_list_location(game) %>
+      <%= @user.get_list_location(game) %>
+    <% else %>
+      <div class="btn-group-vertical" role="group">
+        <%= button_to user_path(@user, game_id: game.id, to: :games_played), method: :patch, class: 'btn btn-primary btn-block btn' do %>
+          <span class="glyphicon glyphicon-plus left"></span> _<small class="right">played</small>
+        <% end %>
+        <%= button_to user_path(@user, game_id: game.id, to: :games_playing), method: :patch, class: 'btn btn-default btn-block btn' do %>
+          <span class="glyphicon glyphicon-plus left"></span> _<small class="right">playing</small>
+        <% end %>
+        <%= button_to user_path(@user, game_id: game.id, to: :games_want), method: :patch, class: 'btn btn-success btn-block btn' do %>
+          <span class="glyphicon glyphicon-plus left"></span> _<small class="right">to-play</small>
+        <% end %>
+      </div>
+    <% end %>
+  </td>
+</tr>

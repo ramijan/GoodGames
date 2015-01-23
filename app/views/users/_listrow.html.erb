@@ -1,0 +1,41 @@
+<td class="col-md-1">
+  <% if game['image'] && game['image']['thumb_url'] %>
+    <%= link_to game_path(game) do %>
+      <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img" %>
+    <% end %>
+  <% end %>
+</td>
+<td class="col-md-2">
+  <%= link_to game['name'], game_path(game) %> 
+</td>
+<td class="col-md-2">
+  <%= game.developer %>
+</td>
+<td class="col-md-2">
+  <%= game.publisher %>
+</td>
+<td class="col-md-2">
+  <b><%= game.average_rating || 'n/a' %></b>
+</td>
+<td class="col-md-2">
+  <p>
+    <% if my_review(game) %>
+      <% (1..my_rating(game)).each do |i| %>
+        <%= link_to game_review_path(game, my_review(game), :review => {rating: i}, :from_list => true), :method => :patch, class:'star-group' do %>  
+          <span class="glyphicon glyphicon-star on"></span>
+        <% end %>
+      <% end %>
+      <% ((my_rating(game)+1)...6).each do |i| %>
+        <%= link_to game_review_path(game, my_review(game), :review => {rating: i}, :from_list => true), :method => :patch, class:'star-group' do %>
+          <span class="glyphicon glyphicon-star off"></span>
+        <% end %>
+      <% end %>
+    <% else %>
+      <% (1..5).each do |i| %>
+        <%= link_to game_reviews_path(game, :review => {rating: i}, :from_list => true), :method => :create, class:'star-group' do %>
+          <span class="glyphicon glyphicon-star off"></span>
+        <% end %>
+      <% end %>
+    <% end %>
+  </p>
+</td>

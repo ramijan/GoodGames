@@ -14,4 +14,8 @@ module ApplicationHelper
     end
   end
 
+  def my_review(game)
+    return current_user.reviews.find_by(game_id: game.id)
+  end
+
 end

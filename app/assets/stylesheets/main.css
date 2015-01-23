@@ -20,14 +20,29 @@
 
 }
 
-.glyphicon-star {
+.star-group {
+  text-decoration: none !important;
+}
+
+.glyphicon-star.on {
   color: gold;
 }
 
-.glyphicon-star-empty:hover {
+.glyphicon-star.off {
+  color: gray;
+}
+
+/*.glyphicon-star.off:hover {
   color: gold;
 
+}*/
+
+p > a > span:hover:before,
+p > a > span:hover ~ span:before {
+  color: gold;
 }
+
+
 
 .game-header {
   border-bottom: 2px solid lightgray;

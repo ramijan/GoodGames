@@ -1,5 +1,6 @@
 <!-- Top section -->
-<div class="row jumbotron">
+<div class="jumbotron">
+  <div class="container-fluid">
   <div class="col-md-3">
     <%= image_tag @gb_data['image']['medium_url'], width:'100%' %>
   </div>
@@ -26,6 +27,7 @@
         <%= link_to "Add to collection", games_path(game_id:get_id(@gb_data)), :method => :post %>
       <% end %>
     <% end %>
+  </div>
   </div>
 </div>
 
