@@ -18,4 +18,20 @@ class ReviewsController < ApplicationController
 
   end
 
+  def edit
+    @game = Game.find(params[:game_id])
+    @review = Review.find(params[:id])
+  end
+
+  def update
+    @review = Review.find(params[:id])
+
+    if @review.update_attributes(params.require(:review).permit(:rating, :title, :body))
+      redirect_to game_path(params[:game_id])
+    else
+      render :edit
+    end
+  end
+
+
 end

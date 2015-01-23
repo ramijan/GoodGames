@@ -1,12 +1,4 @@
 <h2>Add a review for <%= @game.name %></h2>
 
 
-<%= form_for [@game, @review] do |f| %>
-  <%= f.label :rating, "Star rating:" %>
-  <%= f.select :rating, [['1 star',1], ['2 stars',2], ['3 stars',3], ['4 stars',4], ['5 stars',5]].reverse, class:'form-control' %><br><br>
-  <%= f.label :title, "Title:" %>
-  <%= f.text_field :title, placeholder:'review title...', class:'form-control' %><br>
-  <%= f.label :body, "Review:" %>
-  <%= f.text_area :body, placeholder:'review...', class:'form-control', rows:'10' %><br>
-  <%= f.submit "Submit review", class:'btn btn-lg btn-success' %>
-<% end %>
+<%= render 'reviews/form' %>
