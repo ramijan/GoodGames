@@ -10,221 +10,216 @@
 
 
   <!-- Tab panes -->
-<div class="row">
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="all">
-      <br>
-      <table class='table table-striped'>
-        <tr class="row">
-          <th class="col-md-1">cover</th>
-          <th class="col-md-2">title</th>
-          <th class="col-md-2">developer</th>
-          <th class="col-md-2">publisher</th>
-          <th class="col-md-2">avg rating</th>
-          <th class="col-md-2">my rating</th>
-          <th class="col-md-1">list</th>
-        </tr>
-      <% @user.games.reverse.each do |game| %>
-      <tr class="row game-row">
-        <td class="col-md-1">
-          <% if game['image'] && game['image']['thumb_url'] %>
-            <%= link_to game_path(game) do %>
-            <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img" %>
-            <% end %>
+  <div class="container-fluid">
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="all">
+        <br>
+        <table class='table table-striped'>
+          <%= render 'users/tableheader' %>
+          <% @user.games.reverse.each do |game| %>
+            <tr class="row game-row">
+              <td class="col-md-1">
+                <% if game['image'] && game['image']['thumb_url'] %>
+                  <%= link_to game_path(game) do %>
+                    <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img" %>
+                  <% end %>
+                <% end %>
+              </td>
+              <td class="col-md-2">
+                <%= link_to game['name'], game_path(game) %> 
+              </td>
+              <td class="col-md-2">
+                <%= game.developer %>
+              </td>
+              <td class="col-md-2">
+                <%= game.publisher %>
+              </td>
+              <td class="col-md-2">
+                <b><%= game.average_rating || 'n/a' %></b>
+              </td>
+              <td class="col-md-2">
+                <p class="gray">
+                  <% my_rating(game).times do %>
+                    <span class="glyphicon glyphicon-star"></span>
+                  <% end %>
+                  <% (5-my_rating(game)).times do %>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                  <% end %>
+                </p>
+              </td>
+              <td class="col-md-1">
+                <% if @user.get_list_location(game) %>
+                  <%= @user.get_list_location(game) %>
+                <% else %>
+                  <div class="btn-group-vertical" role="group">
+                    <%= button_to user_path(@user, game_id: game.id, to: :games_played), method: :patch, class: 'btn btn-primary btn-block btn' do %>
+                      <span class="glyphicon glyphicon-plus left"></span> _<small class="right">played</small>
+                    <% end %>
+                    <%= button_to user_path(@user, game_id: game.id, to: :games_playing), method: :patch, class: 'btn btn-default btn-block btn' do %>
+                      <span class="glyphicon glyphicon-plus left"></span> _<small class="right">playing</small>
+                    <% end %>
+                    <%= button_to user_path(@user, game_id: game.id, to: :games_want), method: :patch, class: 'btn btn-success btn-block btn' do %>
+                      <span class="glyphicon glyphicon-plus left"></span> _<small class="right">to-play</small>
+                    <% end %>
+                  </div>
+                <% end %>
+              </td>
+            </tr>
           <% end %>
-        </td>
-        <td class="col-md-2">
-          <%= link_to game_path(game) do %> 
-            <%= game['name'] %>
+        </table>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="played">
+        <br>
+        <table class='table table-striped'>
+          <%= render 'users/tableheader' %>
+          <% @user.games_played.each do |game_id| %>
+            <% game = Game.find(game_id) %>
+            <tr class="row game-row">
+              <td class="col-md-1">
+                <% if game['image'] && game['image']['thumb_url'] %>
+                  <%= link_to game_path(game) do %>
+                    <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img" %>
+                  <% end %>
+                <% end %>
+              </td>
+              <td class="col-md-2">
+                <%= link_to game['name'], game_path(game) %> 
+              </td>
+              <td class="col-md-2">
+                <%= game.developer %>
+              </td>
+              <td class="col-md-2">
+                <%= game.publisher %>
+              </td>
+              <td class="col-md-2">
+                <b><%= game.average_rating || 'n/a' %></b>
+              </td>
+              <td class="col-md-2">
+                <p class="gray">
+                  <% my_rating(game).times do %>
+                    <span class="glyphicon glyphicon-star"></span>
+                  <% end %>
+                  <% (5-my_rating(game)).times do %>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                  <% end %>
+                </p>
+              </td>
+              <td class="col-md-1">
+                <div class="btn-group-vertical" role="group">
+                  <%= button_to user_path(@user, game_id: game.id, to: :games_playing), method: :patch, class: 'btn btn-default btn-block btn' do %>
+                    <span class="glyphicon glyphicon-plus left"></span> _<small class="right">playing</small>
+                  <% end %>
+                  <%= button_to user_path(@user, game_id: game.id, to: :games_want), method: :patch, class: 'btn btn-success btn-block btn' do %>
+                    <span class="glyphicon glyphicon-plus left"></span> _<small class="right">to-play</small>
+                  <% end %>
+                </div>
+              </td>
+            </tr>
+          <% end %>    
+        </table>  
+      </div>
+      <div role="tabpanel" class="tab-pane" id="current">
+        <br>
+        <table class='table table-striped'>
+          <%= render 'users/tableheader' %>
+          <% @user.games_playing.each do |game_id| %>
+            <% game = Game.find(game_id) %>
+            <tr class="row game-row">
+              <td class="col-md-1">
+                <% if game['image'] && game['image']['thumb_url'] %>
+                  <%= link_to game_path(game) do %>
+                    <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img" %>
+                  <% end %>
+                <% end %>
+              </td>
+              <td class="col-md-2">
+                <%= link_to game['name'], game_path(game) %> 
+              </td>
+              <td class="col-md-2">
+                <%= game.developer %>
+              </td>
+              <td class="col-md-2">
+                <%= game.publisher %>
+              </td>
+              <td class="col-md-2">
+                <b><%= game.average_rating || 'n/a' %></b>
+              </td>
+              <td class="col-md-2">
+                <p class="gray">
+                  <% my_rating(game).times do %>
+                    <span class="glyphicon glyphicon-star"></span>
+                  <% end %>
+                  <% (5-my_rating(game)).times do %>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                  <% end %>
+                </p>
+              </td>
+              <td class="col-md-1">
+                <div class="btn-group-vertical" role="group">
+                  <%= button_to user_path(@user, game_id: game.id, to: :games_played), method: :patch, class: 'btn btn-primary btn-block btn' do %>
+                    <span class="glyphicon glyphicon-plus left"></span> _<small class="right">played</small>
+                  <% end %>
+                  <%= button_to user_path(@user, game_id: game.id, to: :games_want), method: :patch, class: 'btn btn-success btn-block btn' do %>
+                    <span class="glyphicon glyphicon-plus left"></span> _<small class="right">to-play</small>
+                  <% end %>
+                </div>
+              </td>
+            </tr>
           <% end %>
-        </td>
-        <td class="col-md-2">
-          <%= game.developer %>
-        </td>
-        <td class="col-md-2">
-          <%= game.publisher %>
-        </td>
-        <td class="col-md-2">
-          <%= game.average_rating || 'n/a' %>
-        </td>
-        <td class="col-md-2">
-        <p class="gray">
-          <% my_rating(game).times do %>
-            <span class="glyphicon glyphicon-star"></span>
+        </table>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="want">
+        <br>
+        <table class='table table-striped'>
+          <%= render 'users/tableheader' %>
+          <% @user.games_want.each do |game_id| %>
+            <% game = Game.find(game_id) %>
+            <tr class="row game-row">
+              <td class="col-md-1">
+                <% if game['image'] && game['image']['thumb_url'] %>
+                  <%= link_to game_path(game) do %>
+                    <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img" %>
+                  <% end %>
+                <% end %>
+              </td>
+              <td class="col-md-2">
+                <%= link_to game['name'], game_path(game) %> 
+              </td>
+              <td class="col-md-2">
+                <%= game.developer %>
+              </td>
+              <td class="col-md-2">
+                <%= game.publisher %>
+              </td>
+              <td class="col-md-2">
+                <b><%= game.average_rating || 'n/a' %></b>
+              </td>
+              <td class="col-md-2">
+                <p class="gray">
+                  <% my_rating(game).times do %>
+                    <span class="glyphicon glyphicon-star"></span>
+                  <% end %>
+                  <% (5-my_rating(game)).times do %>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                  <% end %>
+                </p>
+              </td>
+              <td class="col-md-1">
+                <div class="btn-group-vertical" role="group">
+                  <%= button_to user_path(@user, game_id: game.id, to: :games_played), method: :patch, class: 'btn btn-primary btn-block btn' do %>
+                    <span class="glyphicon glyphicon-plus left"></span> _<small class="right">played</small>
+                  <% end %>
+                  <%= button_to user_path(@user, game_id: game.id, to: :games_playing), method: :patch, class: 'btn btn-default btn-block btn' do %>
+                    <span class="glyphicon glyphicon-plus left"></span> _<small class="right">playing</small>
+                  <% end %>
+                </div>
+              </td>
+            </tr>
           <% end %>
-          <% (5-my_rating(game)).times do %>
-            <span class="glyphicon glyphicon-star-empty"></span>
-          <% end %>
-          </p>
-        </td>
-        <td class="col-md-1">
-          <% if @user.get_list_location(game) %>
-            <%= @user.get_list_location(game) %>
-
-          <% else %>
-          <div class="btn-group-vertical" role="group">
-            <%= button_to user_path(@user, game_id: game.id, to: :games_played), method: :patch, class: 'btn btn-primary btn-block btn' do %>
-              <span class="glyphicon glyphicon-plus left"></span> _<small class="right">played</small>
-            <% end %>
-            <%= button_to user_path(@user, game_id: game.id, to: :games_playing), method: :patch, class: 'btn btn-default btn-block btn' do %>
-              <span class="glyphicon glyphicon-plus left"></span> _<small class="right">playing</small>
-            <% end %>
-            <%= button_to user_path(@user, game_id: game.id, to: :games_want), method: :patch, class: 'btn btn-success btn-block btn' do %>
-              <span class="glyphicon glyphicon-plus left"></span> _<small class="right">to-play</small>
-            <% end %>
-          </div>
-          <% end %>
-        </td>
-      </tr>
-      <% end %>
-      </table>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="played">
-    <table>
-      <tr class="row">
-        <th class="col-md-1">Cover</th>
-        <th class="col-md-2">Title</th>
-        <th class="col-md-2">Developer</th>
-        <th class="col-md-2">Publisher</th>
-        <th class="col-md-2">avg. rating</th>
-        <th class="col-md-3">add to list</th>
-       </tr>
-    <% @user.games_played.each do |game_id| %>
-      <% game = Game.find(game_id) %>
-     <tr class="row game-row">
-        <td class="col-md-1">
-          <% if game['image'] && game['image']['thumb_url'] %>
-            <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img" %>
-          <% end %>
-        </td>
-        <td class="col-md-2">
-          <%= game['name'] %>
-        </td>
-        <td class="col-md-2">
-          Nintento (Placeholder)
-        </td>
-        <td class="col-md-2">
-          Nintendo (Placeholder)
-        </td>
-        <td class="col-md-2">
-          3.5 (Placeholder)
-        </td>
-        <td class="col-md-3">
-          <div class="btn-group-vertical" role="group">
-            <%= button_to user_path(@user, game_id: game.id, to: :games_played), method: :patch, class: 'btn btn-primary btn-block btn-sm' do %>
-              <span class="glyphicon glyphicon-plus left"></span> <small class="right">  add to played list</small>
-            <% end %>
-            <%= button_to user_path(@user, game_id: game.id, to: :games_playing), method: :patch, class: 'btn btn-default btn-block btn-sm' do %>
-              <span class="glyphicon glyphicon-plus left"></span><small class="right">  add to playing list</small>
-            <% end %>
-            <%= button_to user_path(@user, game_id: game.id, to: :games_want), method: :patch, class: 'btn btn-success btn-block btn-sm' do %>
-              <span class="glyphicon glyphicon-plus left"></span><small class="right">   add to to-play list</small>
-            <% end %>
-          </div>
-        </td>
-      </tr>
-      
-      <% end %>    
-      </table>  
-    </div>
-    <div role="tabpanel" class="tab-pane" id="current">
-    <table>
-      <tr class="row">
-        <th class="col-md-1">Cover</th>
-        <th class="col-md-2">Title</th>
-        <th class="col-md-2">Developer</th>
-        <th class="col-md-2">Publisher</th>
-        <th class="col-md-2">avg. rating</th>
-        <th class="col-md-3">add to list</th>
-      </tr>
-    <% @user.games_playing.each do |game_id| %>
-      <% game = Game.find(game_id) %>
-     <tr class="row game-row">
-        <td class="col-md-1">
-          <% if game['image'] && game['image']['thumb_url'] %>
-            <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img" %>
-          <% end %>
-        </td>
-        <td class="col-md-2">
-          <%= game['name'] %>
-        </td>
-        <td class="col-md-2">
-          Nintento (Placeholder)
-        </td>
-        <td class="col-md-2">
-          Nintendo (Placeholder)
-        </td>
-        <td class="col-md-2">
-          3.5 (Placeholder)
-        </td>
-        <td class="col-md-3">
-          <div class="btn-group-vertical" role="group">
-            <%= button_to user_path(@user, game_id: game.id, to: :games_played), method: :patch, class: 'btn btn-primary btn-block btn-sm' do %>
-              <span class="glyphicon glyphicon-plus left"></span> <small class="right">  add to played list</small>
-            <% end %>
-            <%= button_to user_path(@user, game_id: game.id, to: :games_playing), method: :patch, class: 'btn btn-default btn-block btn-sm' do %>
-              <span class="glyphicon glyphicon-plus left"></span><small class="right">  add to playing list</small>
-            <% end %>
-            <%= button_to user_path(@user, game_id: game.id, to: :games_want), method: :patch, class: 'btn btn-success btn-block btn-sm' do %>
-              <span class="glyphicon glyphicon-plus left"></span><small class="right">   add to to-play list</small>
-            <% end %>
-          </div>
-        </td>
-      </tr>
-      <% end %>
-      </table>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="want">
-    <table>
-      <tr class="row">
-        <th class="col-md-1">Cover</th>
-        <th class="col-md-2">Title</th>
-        <th class="col-md-2">Developer</th>
-        <th class="col-md-2">Publisher</th>
-        <th class="col-md-2">avg. rating</th>
-        <th class="col-md-3">add to list</th>
-      </tr>
-    <% @user.games_want.each do |game_id| %>
-      <% game = Game.find(game_id) %>
-           <tr class="row game-row">
-        <td class="col-md-1">
-          <% if game['image'] && game['image']['thumb_url'] %>
-            <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img" %>
-          <% end %>
-        </td>
-        <td class="col-md-2">
-          <%= game['name'] %>
-        </td>
-        <td class="col-md-2">
-          Nintento (Placeholder)
-        </td>
-        <td class="col-md-2">
-          Nintendo (Placeholder)
-        </td>
-        <td class="col-md-2">
-          3.5 (Placeholder)
-        </td>
-        <td class="col-md-3">
-          <div class="btn-group-vertical" role="group">
-            <%= button_to user_path(@user, game_id: game.id, to: :games_played), method: :patch, class: 'btn btn-primary btn-block btn-sm' do %>
-              <span class="glyphicon glyphicon-plus left"></span> <small class="right">  add to played list</small>
-            <% end %>
-            <%= button_to user_path(@user, game_id: game.id, to: :games_playing), method: :patch, class: 'btn btn-default btn-block btn-sm' do %>
-              <span class="glyphicon glyphicon-plus left"></span><small class="right">  add to playing list</small>
-            <% end %>
-            <%= button_to user_path(@user, game_id: game.id, to: :games_want), method: :patch, class: 'btn btn-success btn-block btn-sm' do %>
-              <span class="glyphicon glyphicon-plus left"></span><small class="right">   add to to-play list</small>
-            <% end %>
-          </div>
-        </td>
-      </tr>
-    <% end %>
-    </table>
+        </table>
+      </div>
     </div>
   </div>
-
-  </table>
-</div>
 </div>
 
 

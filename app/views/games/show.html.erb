@@ -4,16 +4,15 @@
     <%= image_tag @gb_data['image']['medium_url'], width:'100%' %>
   </div>
   <div class="col-md-9">
-    <h2><%= @gb_data['name'] %></h2>
+    <h1><%= @gb_data['name'] %></h1>
+    <%= @gb_data['publishers'][0]['name'] %>
     <% if @gb_data['original_release_date'] %>
       <h5>Released: <%= @gb_data['original_release_date'].to_datetime.strftime('%B %e, %Y') %></h5>
     <% else %>
       <h5>Release date: <%= "#{@gb_data['expected_release_month']} / #{@gb_data['expected_release_day']}" || @gb_data['expected_release_quarter'] %> / <%= @gb_data['expected_release_year'] %></h5>
     <% end %>
     <p>
-      <% @gb_data['platforms'].each do |platform| %>
-        <small class="platform"> <%= platform['name'] %> /</small>
-      <% end %>
+      <small><%= @gb_data['platforms'].map {|i| i['abbreviation']}.join(' / ') %></small>
     </p>
     <h4><%= @gb_data['deck']  %></h4>
     <% if current_user %>
@@ -49,6 +48,7 @@
           <%= raw @gb_data['description'] %>
         </div>
         <div role="tabpanel" class="tab-pane" id="videos">
+          <br>
           <% @gb_data['videos'].each do |vid| %>
             <%= link_to vid['site_detail_url'] do %>
               <p><%= vid['name'] %></p>
@@ -56,6 +56,7 @@
           <% end %>
         </div>
         <div role="tabpanel" class="tab-pane" id="images">
+          <br>
           <% @gb_data['images'].each do |img| %>
             <%= image_tag img['thumb_url'], class:'img-thumbnail images' %>
           <% end %>
@@ -64,10 +65,11 @@
     </div>
   </div>
   <!-- Reviews -->
-  <div class="col-md-4">
+  <div class="col-md-4 well">
+    <h3>Reviews</h3>
     <% if @game %>
       <% @game.reviews.each do |review| %>
-        <div class="well">
+        <div>
           <p> <%= review.rating %>
             <% review.rating.times do %>
               <span class="glyphicon glyphicon-star"></span>
@@ -80,6 +82,7 @@
           <h5><%= review.title %></h5>
           <p><%= review.body %></p>
         </div>
+        <hr>
         <br>
       <% end %>
     <% end %>

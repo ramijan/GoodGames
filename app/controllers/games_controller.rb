@@ -6,7 +6,7 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
-    @review = @game.reviews.find_by(user_id: current_user.id)
+    @review = @game.reviews.find_by(user_id: current_user.id) if current_user
     @gb_data = Giantbomb.game(params[:id])
   end
 
