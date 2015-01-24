@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
 
   def new
+    redirect_to games_path if current_user
     @user = User.new
   end
 
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id.to_s
       redirect_to user_path(@user)
     else
+      flash.now[:danger] = @user.errors.full_messages.to_sentence
       render :new
     end
   end

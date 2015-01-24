@@ -6,6 +6,15 @@
   </div>
   <div class="col-md-4">
 <h1>Create an account</h1>
+
+<% flash.each do |key, value| %>
+  <div class='alert alert-<%= key %>' role='alert'>
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <%= value %>
+  </div>
+<% end %>
+
+
 <%= form_for @user do |f| %>
   <div class="form-group">
     <p>First name:</p>
