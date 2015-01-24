@@ -73,6 +73,7 @@
   <div class="col-md-4 well">
     <h3>Reviews</h3>
     <% if @game %>
+      <%= "No reviews yet" if @game.reviews.count == 0 %>
       <% @game.reviews.each do |review| %>
         <div>
           <p> <%= review.rating %>
