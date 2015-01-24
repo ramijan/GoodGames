@@ -1,13 +1,17 @@
 <nav class="navbar navbar-default navbar-inverse footer">
-  <ul class="nav navbar-nav navbar-left">
-    <li><%= link_to "About", about_path, class:'navbar-link' %></li>
-    <li><%= link_to "Contact", contact_path, class:'navbar-link' %></li>
-  </ul>
-  <div class="navbar-right gb-logo">
-    <%= link_to 'http://www.giantbomb.com', target:'_blank' do %>
-      <p class="navbar-link"> Powered by: 
-        <%= image_tag 'giant-bomb-logo.png', height:'40' %>
-      </p>
-    <% end %>
+  <div class="row">
+    <div class="col-xs-6">
+      <ul class="nav navbar-nav navbar-left">
+        <li><%= link_to "About", about_path, class:'navbar-link' %></li>
+        <li><%= link_to "Contact", contact_path, class:'navbar-link' %></li>
+      </ul>
+    </div>
+    <div class="col-xs-6 gb-logo">
+        <%= link_to 'http://www.giantbomb.com', target:'_blank' do %>
+          <p class="navbar-link"> Powered by: 
+            <%= image_tag 'giant-bomb-logo.png', height:'40' %>
+          </p>
+        <% end %>
+    </div>
   </div>
 </nav>
