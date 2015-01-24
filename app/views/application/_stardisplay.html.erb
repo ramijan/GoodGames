@@ -1,0 +1,16 @@
+<div>
+  <% if @game && @game.average_rating %>
+    <% (1..@game.average_rating.floor).each do |i| %>
+        <span class="glyphicon glyphicon-star on"></span>
+    <% end %>
+    <% ((@game.average_rating.floor+1)...6).each do |i| %>
+        <span class="glyphicon glyphicon-star off"></span>
+    <% end %>
+    <small><%= "- (#{@game.average_rating} avg) based on #{@game.reviews.count} reviews" %></small>
+  <% else %>
+    <% (1..5).each do |i| %>
+        <span class="glyphicon glyphicon-star off"></span>
+    <% end %>
+    <small>- no ratings yet</small>
+  <% end %>
+</div>

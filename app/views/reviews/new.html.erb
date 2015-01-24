@@ -1,4 +1,7 @@
-<h2>Add a review for <%= @game.name %></h2>
+<div class="col-md-8">
+  <h2>Add <a href=""></a> review for <%= @game.name %></h2>
+  <%= render 'reviews/form' %>
+</div>
 
-
-<%= render 'reviews/form' %>
+<div class="col-md-4">
+</div>

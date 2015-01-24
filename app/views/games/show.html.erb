@@ -12,19 +12,22 @@
     <% else %>
       <h5>Release date: <%= "#{@gb_data['expected_release_month']} / #{@gb_data['expected_release_day']}" || @gb_data['expected_release_quarter'] %> / <%= @gb_data['expected_release_year'] %></h5>
     <% end %>
+    <%= render 'stardisplay' %>
+
+
     <p>
-      <small><%= @gb_data['platforms'].map {|i| i['abbreviation']}.join(' / ') %></small>
+      <small><%= @gb_data['platforms'].map {|i| i['abbreviation']}.join(' / ') if @gb_data['platforms'] %></small>
     </p>
     <h4><%= @gb_data['deck']  %></h4>
     <% if current_user %>
       <% if @game && current_user.games.find(@game.id) %>
         <% if @review %>
-          <%= link_to "Edit your Review", edit_game_review_path(@game, @review) %>
+          <%= link_to "Edit your Review", edit_game_review_path(@game, @review), class:"btn btn-lg btn-primary" %>
         <% else %>
-          <%= link_to "Write a Review", new_game_review_path(@game) %>
+          <%= link_to "Write a Review", new_game_review_path(@game), class:"btn btn-lg btn-primary" %>
         <% end %>
       <% else %>
-        <%= link_to "Add to collection", games_path(game_id:get_id(@gb_data)), :method => :post %>
+        <%= link_to "Add to collection", games_path(game_id:get_id(@gb_data)), :method => :post, class:"btn btn-lg btn-primary" %>
       <% end %>
     <% end %>
   </div>

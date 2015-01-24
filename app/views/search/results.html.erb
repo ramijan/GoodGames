@@ -5,29 +5,44 @@
     <h1><%= @results.count %><%= "+" if @results.count == 100 %> search results:</h1>
     <% @results.each do |game| %>
         <div class="row game-row">
-          <%= link_to game_path(get_id(game)) do %>
           <div class="col-md-2">
-          <% if game['image'] && game['image']['thumb_url'] %>
-            <%= image_tag game['image']['icon_url'], class:"img-thumbnail search-img" %>
+          <%= link_to game_path(get_id(game)) do %>
+            <% if game['image'] && game['image']['thumb_url'] %>
+              <%= image_tag game['image']['small_url'], class:"img-thumbnail search-img" %>
             <% end %>
+          <% end %>
           </div>
           <div class="col-md-10">
-            <h3 class="title"><%= game['name'] %></h3>
+            <%= link_to game_path(get_id(game)) do %>
+              <h3 class="title"><%= game['name'] %></h3>
+            <% end %>
             <p><%= game['deck'] %></p>
             <% if this_game = @all_games.find_by(giant_bomb_game_id: get_id(game)) %>
-              <p>
-                <small><%= "#{this_game.average_rating} avg. rating - " if this_game.average_rating %><%= this_game.reviews.count %> ratings</small>
-              </p>
+              <div>
+                <% if this_game && this_game.average_rating %>
+                  <% (1..this_game.average_rating.floor).each do |i| %>
+                      <span class="glyphicon glyphicon-star on"></span>
+                  <% end %>
+                  <% ((this_game.average_rating.floor+1)...6).each do |i| %>
+                      <span class="glyphicon glyphicon-star off"></span>
+                  <% end %>
+                  <small><%= "- (#{this_game.average_rating} avg) based on #{this_game.reviews.count} reviews" %></small><br><br>
+                <% else %>
+                  <small>no ratings yet</small><br><br>
+                <% end %>
+              </div>
+            <% else %>
+              <small>no ratings yet</small><br><br>
             <% end %>
+
             <% if current_user %>
               <% if @my_games.find_by(giant_bomb_game_id: get_id(game)) %>
                 <p><span class="glyphicon glyphicon-thumbs-up"></span> In your collection</p>
               <% else %>
-                <%= link_to "Add to collection", games_path(game_id:get_id(game)), :method => :post %>
+                <%= link_to "Add to collection", games_path(game_id:get_id(game)), :method => :post, class:"btn btn-primary" %>
               <% end %>
             <% end %>
           </div>
-          <% end %>
         </div>
 
     <% end %>

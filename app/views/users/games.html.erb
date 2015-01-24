@@ -9,81 +9,49 @@
   </ul>
 
 
-  <!-- Tab panes -->
+<!-- Tab panes -->
   <div class="container-fluid">
     <div class="tab-content">
+<!-- All games tab -->
       <div role="tabpanel" class="tab-pane active" id="all">
         <br>
         <table class='table table-striped'>
           <%= render 'users/tableheader' %>
           <% @user.games.reverse.each do |game| %>
-            <%= render 'users/gamerow', :game => game %>
+            <%= render 'users/gamerow', :game => game, :list => :all %>
           <% end %>
         </table>
       </div>
+<!-- Played games tab -->
       <div role="tabpanel" class="tab-pane" id="played">
         <br>
         <table class='table table-striped'>
           <%= render 'users/tableheader' %>
           <% @user.games_played.each do |game_id| %>
             <% game = Game.find(game_id) %>
-            <tr class="row game-row">
-              <%= render 'users/listrow', :game => game %>
-              <td class="col-md-1">
-                <div class="btn-group-vertical" role="group">
-                  <%= button_to user_path(@user, game_id: game.id, to: :games_playing), method: :patch, class: 'btn btn-default btn-block btn' do %>
-                    <span class="glyphicon glyphicon-plus left"></span> _<small class="right">playing</small>
-                  <% end %>
-                  <%= button_to user_path(@user, game_id: game.id, to: :games_want), method: :patch, class: 'btn btn-success btn-block btn' do %>
-                    <span class="glyphicon glyphicon-plus left"></span> _<small class="right">to-play</small>
-                  <% end %>
-                </div>
-              </td>
-            </tr>
+            <%= render 'users/gamerow', :game => game, :list => :played %>            
           <% end %>    
         </table>  
       </div>
+<!-- Currently playing tab -->
       <div role="tabpanel" class="tab-pane" id="current">
         <br>
         <table class='table table-striped'>
           <%= render 'users/tableheader' %>
           <% @user.games_playing.each do |game_id| %>
             <% game = Game.find(game_id) %>
-            <tr class="row game-row">
-              <%= render 'users/listrow', :game => game %>
-              <td class="col-md-1">
-                <div class="btn-group-vertical" role="group">
-                  <%= button_to user_path(@user, game_id: game.id, to: :games_played), method: :patch, class: 'btn btn-primary btn-block btn' do %>
-                    <span class="glyphicon glyphicon-plus left"></span> _<small class="right">played</small>
-                  <% end %>
-                  <%= button_to user_path(@user, game_id: game.id, to: :games_want), method: :patch, class: 'btn btn-success btn-block btn' do %>
-                    <span class="glyphicon glyphicon-plus left"></span> _<small class="right">to-play</small>
-                  <% end %>
-                </div>
-              </td>
-            </tr>
+            <%= render 'users/gamerow', :game => game, :list => :playing %>
           <% end %>
         </table>
       </div>
+<!-- Want to play tab -->
       <div role="tabpanel" class="tab-pane" id="want">
         <br>
         <table class='table table-striped'>
           <%= render 'users/tableheader' %>
           <% @user.games_want.each do |game_id| %>
             <% game = Game.find(game_id) %>
-            <tr class="row game-row">
-              <%= render 'users/listrow', :game => game %>              
-              <td class="col-md-1">
-                <div class="btn-group-vertical" role="group">
-                  <%= button_to user_path(@user, game_id: game.id, to: :games_played), method: :patch, class: 'btn btn-primary btn-block btn' do %>
-                    <span class="glyphicon glyphicon-plus left"></span> _<small class="right">played</small>
-                  <% end %>
-                  <%= button_to user_path(@user, game_id: game.id, to: :games_playing), method: :patch, class: 'btn btn-default btn-block btn' do %>
-                    <span class="glyphicon glyphicon-plus left"></span> _<small class="right">playing</small>
-                  <% end %>
-                </div>
-              </td>
-            </tr>
+            <%= render 'users/gamerow', :game => game, :list => :want %>            
           <% end %>
         </table>
       </div>
