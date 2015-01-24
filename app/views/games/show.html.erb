@@ -45,7 +45,7 @@
         <li role="presentation" class="active"><a href="#details" role="tab" data-toggle="tab">Details</a></li>
         <li role="presentation"><a href="#videos" role="tab" data-toggle="tab">Videos</a></li>
         <li role="presentation"><a href="#images" role="tab" data-toggle="tab">Images</a></li>
-        <li role="presentation"><a href="#reviews" role="tab" data-toggle="tab" class="hide">Reviews</a></li>
+        <li role="presentation"><a href="#reviews" role="tab" data-toggle="tab" class="hiding">Reviews</a></li>
       </ul>
 
       <!-- Tab panes -->
@@ -67,40 +67,15 @@
             <%= image_tag img['thumb_url'], class:'img-thumbnail images' %>
           <% end %>
         </div>
-        <div role="tabpanel" class="tab-pane hide" id="reviews">
+        <div role="tabpanel" class="tab-pane" id="reviews">
           <%= render 'games/reviews' %>
         </div>
       </div>
     </div>
   </div>
   <!-- Reviews -->
-  <div class="col-md-4 well show">
+  <div class="col-md-4 well showing">
     <%= render 'games/reviews' %>
   </div>
 </div>
 
-
-<style>
-
-.hide {
-  display: none;
-}
-
-.show {
-  display: inherit;
-}
-
-
-@media (max-width: 992px) {
-  .hide {
-    display: inherit !important;
-  }
-
-  .show {
-    display: none !important;
-  }
-
-
-}
-
-</style>

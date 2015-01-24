@@ -1,17 +1,25 @@
 <nav class="navbar navbar-default navbar-inverse">
-    <%= link_to root_path, class:'navbar-brand' do %>
-      <h4 class="navbar-text"><span class="big">G</span>ood<span class="big">G</span>ames</h4>
-    <% end %>
-
+    <div class="navbar-header">
+      <%= link_to root_path, class:'navbar-brand' do %>
+        <span class="big">G</span>ood<span class="big">G</span>ames
+      <% end %>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+ <div class="collapse navbar-collapse" id="nav-collapse">
 <ul class="nav navbar-nav navbar-right">
   <li>
-    <%= form_tag search_path, method: :get, class:"navbar-form navbar-right" do %>
+    <%= form_tag search_path, method: :get, class:"navbar-form showing" do %>
     <div class="form-group">
-      <%= text_field_tag :query, nil, placeholder:"Search", class:"form-control" %>
+      <%= text_field_tag :query, nil, placeholder:"Search", class:"form-control search-bar" %>
+      <%= button_tag class:"btn btn-link search-button" do %>
+        <span class="glyphicon glyphicon-search"></span>
+      <% end %>
     </div>
-    <%= button_tag class:"btn btn-default" do %>
-      <span class="glyphicon glyphicon-search"></span>
-    <% end %>
     <% end %>
   </li>
   <li>
@@ -40,4 +48,17 @@
     </li>
   <% end %>
   </ul>
+  </div>
 </nav>
+
+<%= form_tag search_path, method: :get, class:"form-horizontal hiding" do %>
+  <div class="input-group">
+    <%= text_field_tag :query, nil, placeholder:"Search", class:"form-control search-bar" %>
+    <div class="input-group-btn">
+    <%= button_tag class:"btn btn-primary search-button" do %>
+      <span class="glyphicon glyphicon-search"></span>
+    <% end %>
+    </div>
+  </div>
+  <br>
+<% end %>

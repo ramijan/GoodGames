@@ -19,7 +19,9 @@
   color: #333;
 
 }
-
+.search-button {
+  margin-left: -40px;
+}
 .star-group {
   text-decoration: none !important;
 }
@@ -32,17 +34,10 @@
   color: gray;
 }
 
-/*.glyphicon-star.off:hover {
+.glyphicon-star.off:hover {
   color: gold;
 
-}*/
-
-p > a > span:hover:before,
-p > a > span:hover ~ span:before {
-  color: gold;
 }
-
-
 
 .game-header {
   border-bottom: 2px solid lightgray;
@@ -54,15 +49,11 @@ p > a > span:hover ~ span:before {
   padding-bottom: 10px;
 }
 
-.navbar-link.right {
-  margin-right: 10px;
-  border-left: 1px solid #9D9D9D;
-}
-
-.navbar-brand h4 {
-  margin-top: -5px;
-  margin-bottom: 0;
+.navbar-brand {
   font-family: 'emulogic';
+}
+.navbar-brand:hover {
+  color: #9C9E8C !important;
 }
 
 .title {
@@ -131,4 +122,23 @@ th.col-md-2 {
 
 .center-text {
   text-align: center;
+}
+
+.hiding {
+  display: none !important;
+}
+
+.showing {
+  display: inherit;
+}
+
+
+@media (max-width: 992px) {
+  .hiding {
+    display: inherit !important;
+  }
+
+  .showing {
+    display: none !important;
+  }
 }
