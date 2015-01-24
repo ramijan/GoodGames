@@ -1,0 +1,21 @@
+<h3>Reviews</h3>
+<% if @game %>
+  <%= "No reviews yet" if @game.reviews.count == 0 %>
+  <% @game.reviews.each do |review| %>
+    <div>
+      <p> <%= review.rating %>
+        <% review.rating.times do %>
+          <span class="glyphicon glyphicon-star"></span>
+        <% end %>
+        <% (5-review.rating).times do %>
+          <span class="glyphicon glyphicon-star-empty"></span>          
+        <% end %>
+        - <%= review.user.first_name %>
+      </p>
+      <h5><%= review.title %></h5>
+      <p><%= review.body %></p>
+    </div>
+    <hr>
+    <br>
+  <% end %>
+<% end %>

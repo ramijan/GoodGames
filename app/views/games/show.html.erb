@@ -45,6 +45,7 @@
         <li role="presentation" class="active"><a href="#details" role="tab" data-toggle="tab">Details</a></li>
         <li role="presentation"><a href="#videos" role="tab" data-toggle="tab">Videos</a></li>
         <li role="presentation"><a href="#images" role="tab" data-toggle="tab">Images</a></li>
+        <li role="presentation"><a href="#reviews" role="tab" data-toggle="tab" class="hide">Reviews</a></li>
       </ul>
 
       <!-- Tab panes -->
@@ -66,31 +67,40 @@
             <%= image_tag img['thumb_url'], class:'img-thumbnail images' %>
           <% end %>
         </div>
+        <div role="tabpanel" class="tab-pane hide" id="reviews">
+          <%= render 'games/reviews' %>
+        </div>
       </div>
     </div>
   </div>
   <!-- Reviews -->
-  <div class="col-md-4 well">
-    <h3>Reviews</h3>
-    <% if @game %>
-      <%= "No reviews yet" if @game.reviews.count == 0 %>
-      <% @game.reviews.each do |review| %>
-        <div>
-          <p> <%= review.rating %>
-            <% review.rating.times do %>
-              <span class="glyphicon glyphicon-star"></span>
-            <% end %>
-            <% (5-review.rating).times do %>
-              <span class="glyphicon glyphicon-star-empty"></span>          
-            <% end %>
-            - <%= review.user.first_name %>
-          </p>
-          <h5><%= review.title %></h5>
-          <p><%= review.body %></p>
-        </div>
-        <hr>
-        <br>
-      <% end %>
-    <% end %>
+  <div class="col-md-4 well show">
+    <%= render 'games/reviews' %>
   </div>
 </div>
+
+
+<style>
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: inherit;
+}
+
+
+@media (max-width: 992px) {
+  .hide {
+    display: inherit !important;
+  }
+
+  .show {
+    display: none !important;
+  }
+
+
+}
+
+</style>
