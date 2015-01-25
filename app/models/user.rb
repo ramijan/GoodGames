@@ -30,5 +30,16 @@ class User
     end
   end
 
+  def average_rating
+    if self.reviews.count == 0
+      return 0
+    else
+      total = 0
+      self.reviews.each do |review|
+        total += review.rating
+      end
+      return (total.to_f / self.reviews.count).round(2)
+    end
+  end
 
 end

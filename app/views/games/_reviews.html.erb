@@ -11,6 +11,7 @@
           <span class="glyphicon glyphicon-star-empty"></span>          
         <% end %>
         - <%= review.user.first_name %>
+        - <small><i><%= review.created_at.strftime('%-m/%-e/%y') if review.created_at %></i></small>
       </p>
       <h5><%= review.title %></h5>
       <p><%= review.body %></p>

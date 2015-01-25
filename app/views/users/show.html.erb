@@ -1,21 +1,9 @@
-<h3>My Games</h3>
+<h2><%= "#{@user.first_name.capitalize} #{@user.last_name.capitalize}'s Profile" %></h2>
 
-<% @user.games.each do |game| %>
-        <div class="row game-row">
-          <div class="col-md-3">
-          <% if game['image'] && game['image']['thumb_url'] %>
-            <%= image_tag game['image']['thumb_url'], class:"img-thumbnail search-img", width:'175' %>
-            <% end %>
-          </div>
-          <div class="col-md-9">
-            <h3 class="title"><%= game['name'] %></h3>
-            <p><%= game['deck'] %></p>
-            <p>
-              Average rating: 
-              <% rand(1..5).times do %>
-                <span class="glyphicon glyphicon-star"></span>
-              <% end %>
-            </p>
-          </div>
-        </div>
-<% end %>
+<div class="container">
+  <div class="col-md-8 well">
+  <p><i>Joined in <%= @user.created_at.strftime('%B %Y') %></i></p>
+  <p><%= @user.reviews.count %> ratings (<%= @user.average_rating %> avg)</p>
+  <p><%= @user.reviews.where(:body.exists => true).count %> reviews</p>
+  </div>
+</div>

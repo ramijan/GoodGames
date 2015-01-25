@@ -20,7 +20,7 @@ class Game
     end
 
     if reviews.count > 0
-      return sum.to_f / reviews.count
+      return (sum.to_f / reviews.count).round(2)
     else
       return nil
     end
