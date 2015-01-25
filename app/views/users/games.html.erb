@@ -2,10 +2,10 @@
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#all" role="tab" data-toggle="tab">all  <span class="badge"><%= @user.games.count %></span></a></a></li>
-    <li role="presentation"><a href="#played" role="tab" data-toggle="tab">played  <span class="badge"><%= @user.games_played.count %></span></a></li>
-    <li role="presentation"><a href="#current" role="tab" data-toggle="tab">currently-playing  <span class="badge"><%= @user.games_playing.count %></span></a></li>
-    <li role="presentation"><a href="#want" role="tab" data-toggle="tab">to-play  <span class="badge"><%= @user.games_want.count %></span></a></li>
+    <li role="presentation" class="active"><a href="#all" role="tab" data-toggle="tab" class="list-tab">all <span class="badge"><%= @user.games.count %></span></a></a></li>
+    <li role="presentation"><a href="#played" role="tab" data-toggle="tab" class="list-tab"><small>played <span class="badge"><%= @user.games_played.count %></span></small></a></li>
+    <li role="presentation"><a href="#current" role="tab" data-toggle="tab" class="list-tab"><small>playing-now <span class="badge"><%= @user.games_playing.count %></span></small></a></li>
+    <li role="presentation"><a href="#want" role="tab" data-toggle="tab" class="list-tab"><small>to-play <span class="badge"><%= @user.games_want.count %></span></small></a></li>
   </ul>
 
 

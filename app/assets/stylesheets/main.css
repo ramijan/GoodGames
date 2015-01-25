@@ -132,13 +132,28 @@ th.col-md-2 {
   display: inherit;
 }
 
+.profile-game-img {
+  width: 9%;
+}
 
 @media (max-width: 992px) {
   .hiding {
     display: inherit !important;
   }
 
+  .profile-game-img {
+    width: 18%;
+  }
+
   .showing {
     display: none !important;
   }
+}
+
+@media (max-width: 450px) {
+  .list-tab {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+
 }

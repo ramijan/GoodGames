@@ -1,11 +1,12 @@
-(P1)# implement home page (for logged in users)
-(P1)# add profile pic to user
-(P2)# my games list, should take you to correct tab when you click on one of the buttons (currently always goes to 'all' tab)
-(P2)# fix videos section for game show page
-(P2)# make everything pretty
-(P2)# add better search to search results page (with system selector)
-(P2)# add search to My#Games page
-(P2)# fill out about and contact pages
+# search bar button - remove the outline when clicked
+# add empty messages for video and images tab
+# add a motto to profile ?
+# add friends
+# add recent activity page ?
+# my games list, should take you to correct tab when you click on one of the buttons (currently always goes to 'all' tab)
+# fix videos section for game show page (to show preview images)
+# add better search to search results page (with filters like platform)
+# add search to My Games page
 
 COMPLETED:
 (P1)# Add reviews
@@ -19,3 +20,5 @@ COMPLETED:
 (P2)# add error messages to forms
 (P2)# make nav bar behave on skinny screens
 (P1)# add user profile page
+(P1)# add profile pic to user
+(P2)# fill out about and contact pages

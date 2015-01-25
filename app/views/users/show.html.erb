@@ -29,7 +29,7 @@
       <%= "No games added yet" if @user.games.count == 0 %>
       <% @user.games.order(created_at: :desc).limit(10).each do |game| %>
         <%= link_to game_path(game) do %>
-          <%= image_tag game['image']['thumb_url'], class:'img-thumbnail', width:'10%' %>
+          <%= image_tag game['image']['thumb_url'], class:'img-thumbnail profile-game-img' %>
         <% end %>
       <% end %>
     </div>
