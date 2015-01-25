@@ -22,6 +22,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def photo
+    @user = User.find(params[:id])
+    @user.update(params.require(:user).permit(:photo))
+    redirect_to user_path
+  end
+
   def update  #update
     @user = User.find(params[:id])
     @game = Game.find(params[:game_id])
@@ -51,6 +57,6 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:first_name, :last_name, :email, :photo, :password, :password_confirmation)
     end
 end

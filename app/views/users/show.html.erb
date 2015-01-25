@@ -1,9 +1,60 @@
-<h2><%= "#{@user.first_name.capitalize} #{@user.last_name.capitalize}'s Profile" %></h2>
 
 <div class="container">
-  <div class="col-md-8 well">
-  <p><i>Joined in <%= @user.created_at.strftime('%B %Y') %></i></p>
-  <p><%= @user.reviews.count %> ratings (<%= @user.average_rating %> avg)</p>
-  <p><%= @user.reviews.where(:body.exists => true).count %> reviews</p>
+  <div class="row">
+    <div class="page-header">
+    <h2><%= "#{@user.first_name.capitalize} #{@user.last_name.capitalize}'s Profile" %></h2>
+    </div>
+    <div class="col-md-4">
+      <%= image_tag @user.photo, class: "img-thumbnail" %>
+      <%= form_for @user, url: user_photo_path(@user), method: :patch do |f| %>
+        <%= f.file_field :photo %>
+        <%= f.submit "save" %>
+      <% end %>
+    </div>
+    <div class="col-md-7 well">
+      <p><i>Joined in <%= @user.created_at.strftime('%B %Y') %></i></p>
+      <p><%= @user.reviews.count %> ratings (<%= @user.average_rating %> avg)</p>
+      <p><%= @user.reviews.where(:body.exists => true).count %> reviews</p>
+    </div>
   </div>
+  <br>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= @user.first_name.capitalize %>'s recently added games</h3>
+    </div>
+    <div class="panel-body">
+      <%= "No games added yet" if @user.games.count == 0 %>
+      <% @user.games.order(created_at: :desc).limit(10).each do |game| %>
+        <%= link_to game_path(game) do %>
+          <%= image_tag game['image']['thumb_url'], class:'img-thumbnail', width:'10%' %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Recent reviews</h3>
+    </div>
+    <div class="panel-body">
+      <%= "No reviews added yet" if @user.reviews.count == 0 %>
+      <% @user.reviews.order(created_at: :desc).limit(10).each do |review| %>
+        <p>
+          <strong><%= review.game.name %></strong> - <small><%= review.created_at.strftime('%B %e, %Y') if review.created_at %></small>
+        </p>
+        <p>
+          <% review.rating.times do %>
+             <span class="glyphicon glyphicon-star on"></span>
+          <% end %>
+          <% (5-review.rating).times do %>
+             <span class="glyphicon glyphicon-star off"></span>          
+          <% end %>
+        </p>
+        <p><%= review.title %></p>
+        <p><%= review.body %></p>
+        <hr>
+      <% end %>
+    </div>
+  </div>
+
 </div>

@@ -1,5 +1,4 @@
 (P1)# implement home page (for logged in users)
-(P1)# add user profile page
 (P1)# add profile pic to user
 (P2)# my games list, should take you to correct tab when you click on one of the buttons (currently always goes to 'all' tab)
 (P2)# fix videos section for game show page
@@ -19,3 +18,4 @@ COMPLETED:
 (p1)# should be able to rate games by clicking the stars on the list page
 (P2)# add error messages to forms
 (P2)# make nav bar behave on skinny screens
+(P1)# add user profile page

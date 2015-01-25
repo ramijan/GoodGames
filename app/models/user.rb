@@ -10,6 +10,7 @@ class User
   field :games_played, type: Array, default: []
   field :games_playing, type: Array, default: []
   field :games_want, type: Array, default: []
+  mount_uploader :photo, PhotoUploader
   has_and_belongs_to_many :games
   has_many :reviews
 

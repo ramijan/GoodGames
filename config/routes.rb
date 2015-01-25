@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :users
   get '/signup' => 'users#new', as: :signup
   get '/users/:id/games' => 'users#games', as: :user_games
+  patch '/users/:id/photo' => 'users#photo', as: :user_photo
 
   #sessions
   get '/login' => 'sessions#new', as: :login
