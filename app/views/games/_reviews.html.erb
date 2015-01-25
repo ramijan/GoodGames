@@ -10,7 +10,9 @@
         <% (5-review.rating).times do %>
           <span class="glyphicon glyphicon-star-empty"></span>          
         <% end %>
-        - <%= review.user.first_name %>
+        - <%= link_to user_path(review.user) do %>
+            <%= review.user.first_name %>
+          <% end %>
         - <small><i><%= review.created_at.strftime('%-m/%-e/%y') if review.created_at %></i></small>
       </p>
       <h5><%= review.title %></h5>
