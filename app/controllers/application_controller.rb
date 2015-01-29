@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def authorize
+    flash[:warning] = "You must be logged in to access that content"
     redirect_to login_path unless current_user
   end
   
