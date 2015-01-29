@@ -12,5 +12,5 @@ class ApplicationController < ActionController::Base
     flash[:warning] = "You must be logged in to access that content"
     redirect_to login_path unless current_user
   end
-  
+
 end

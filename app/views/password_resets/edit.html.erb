@@ -1,0 +1,31 @@
+
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-8">
+    <h2>Password reset</h2>
+    <hr>
+    <h5>Reset password for: <%= @user.email %></h5>
+    <%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
+       <% flash.each do |key, value| %>
+        <div class='alert alert-<%= key %>' role='alert'>
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <%= value %>
+        </div>
+      <% end %>
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class:'form-control' %>
+      </div>
+      <div class="field">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class:'form-control'%>
+      </div>
+      <div class="actions">
+        <%= f.submit "Update Password", class:'btn btn-default' %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-2">
+  </div>
+</div>

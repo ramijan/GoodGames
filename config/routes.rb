@@ -24,4 +24,8 @@ Rails.application.routes.draw do
   #search
   get '/search' => 'search#results'
 
+  #password resets
+  resources :password_resets
+
+
 end
